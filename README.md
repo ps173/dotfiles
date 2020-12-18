@@ -4,9 +4,8 @@ It was made from copy cat config. looks okay.
 ## notes.sh
 A script for note taking in vim and terminal.
 
-Setup 
+Setup       
         check if the file is made executable or not. If not mark it executable
-
         Paste it inside usr/local/bin.
 
 That's it for running in terminal 
