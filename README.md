@@ -33,9 +33,9 @@ paste file in home directory and then run
             xrdb ~/.Xresources
 
 #### Other Todos 
-[x] In bashrc make alias for vim
-[x] Install nvm
-[x] Install fortune 
-[x] Install chromium
-[x] Install Rofi and switch to android notification theme
-[x] Install CMUS & tty-clock
+> [x] In bashrc make alias for vim
+> [x] Install nvm
+> [x] Install fortune 
+> [x] Install chromium
+> [x] Install Rofi and switch to android notification theme
+> [x] Install CMUS & tty-clock
