@@ -43,11 +43,11 @@ paste file in home directory and then run
 #### Openbox 
  Incomplete and may not work
 
-    **FOR SETTING Openbox**
-    1. paste files in .config
-    2. Download openbox themes from [here](https://github.com/addy-dclxvi/openbox-theme-collections)
-    3. install tint2 
-    4. paste tint2 folder in .config
+**FOR SETTING Openbox**
+1. paste files in .config
+2. Download openbox themes from [here](https://github.com/addy-dclxvi/openbox-theme-collections)
+3. install tint2 
+4. paste tint2 folder in .config
 
 ###### Todo
-    [] add more rice for awesome (one with power arrow theme)
+[] add more rice for awesome (one with power arrow theme)
