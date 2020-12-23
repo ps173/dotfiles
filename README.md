@@ -9,13 +9,13 @@ To make it work:
 A script for note taking in vim and terminal.
 
 Setup:   
-      
       check if the file is made executable or not. If not mark it executable   
+      
       Paste it inside usr/local/bin.
 
 That's it for running in terminal 
-            
-      For running in vim             
+For running in vim             
+      
       add a key bind for !notes.sh
 
 
