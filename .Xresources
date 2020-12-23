@@ -1,5 +1,5 @@
 !--------------------xdefauls
-URxvt.font: xft:monospace:size=13
+URxvt.font: xft:monospace:size=10
 urxvt*termName: rxvt
 urxvt*scrollBar: false
 urxvt*matcher.button: 1
@@ -11,7 +11,7 @@ Xft*hinting: true
 Xft*hintstyle: hintfull
 URxvt*cursorUnderline: true
 Xft*rgba: rgb
-URxvt*geometry: 85x20
+URxvt*geometry: 65x20
 *internalBorder: 26
 URxvt*fading: 0
 URxvt*tintColor: #ffffff
@@ -20,39 +20,37 @@ URxvt*inheritPixmap: False
 
 
 URxvt.depth: 32
-URxvt.background: rgba:1111/1111/1111/dddd
-URxvt*foreground: #cccaca
 
-!Black
-URxvt*color0: #222222
-URxvt*color8: #5b595a
-!Red
-URxvt*color1: #664742
-URxvt*color9: #664742
-!Green
-URxvt*color2: #A5AF86
-URxvt*color10: #A5AF86
-!Yellow
-URxvt*color3: #F7E7BD
-URxvt*color11: #F7E7BD
-!Blue
-URxvt*color4: #6e686f
-URxvt*color12: #6e686f
-!Magenta
-URxvt*color5: #966E6E
-URxvt*color13: #B09A91
-!Cyan
-URxvt*color6: #849492
-URxvt*color14: #849492
-!White
-URxvt*color7: #a49c9c
-URxvt*color15: #e9e6e6
+URxvt*background:   [80]#282a36
+*foreground:   #eff0eb
+*cursorColor:  #9aedfe
 
+*color0:      #33303b
+*color8:      #4f4b58
+*color1:      #ff5c57
+*color9:      #ff5c57
+*color2:      #5af78e
+*color10:     #5af78e
+*color3:      #f3f99d
+*color11:     #f3f99d
+*color4:      #57c7ff
+*color12:     #57c7ff
+*color5:      #ff6ac1
+*color13:     #ff6ac1
+*color6:      #9aedfe
+*color14:     #9aedfe
+*color7:      #eff0eb
+*color15:     #eff0eb
 
 !TABS
-URxvt.perl-ext-common : default,tabbed
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg:    1
-URxvt.tabbed.tab-bg:    0
+!URxvt.perl-ext-common : default,tabbed,matcher
+!URxvt.tabbed.tabbar-fg: 2
+!URxvt.tabbed.tabbar-bg: 0
+!URxvt.tabbed.tab-fg:    1
+!URxvt.tabbed.tab-bg:    0
+
+! Links color and click
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.colorUL: #8F30D0
 

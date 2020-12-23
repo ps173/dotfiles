@@ -80,7 +80,7 @@ local themes = {
 local chosen_theme = themes[1]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "x-terminal-emulator"
+local terminal     = "urxvt"
 local vi_focus     = false -- vi-like client focus - https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true -- cycle trough all previous client or just the first -- https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "vim"
@@ -89,7 +89,7 @@ local browser      = os.getenv("BROWSER") or "firefox"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5"}
+awful.util.tagnames = { "", "", "", "", ""}
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -764,5 +764,4 @@ end)
 -- tag spacing
 
 -- Autostart
-awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("compton")

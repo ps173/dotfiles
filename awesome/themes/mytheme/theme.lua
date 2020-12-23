@@ -15,27 +15,27 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/mytheme"
 theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/themes/mytheme/wall.jpg"
-theme.font                                      = "ubuntu mono bold 13"
-theme.menu_bg_normal                            = "#000000"
-theme.menu_bg_focus                             = "#000000"
-theme.bg_normal                                 = "#43216a24"
-theme.bg_focus                                  = "#12897a04"
-theme.bg_urgent                                 = "#12897a"
-theme.fg_normal                                 = "#751969"
-theme.fg_focus                                  = "#341975"
-theme.fg_urgent                                 = "#051969"
-theme.fg_minimize                               = "#341975"
+theme.font                                      = "Lato 12"
+theme.menu_bg_normal                            = "#80577D"
+theme.menu_bg_focus                             = "#80577D"
+theme.bg_normal                                 = "#8B170024"
+theme.bg_focus                                  = "#BF140F44"
+theme.bg_urgent                                 = "#B9565948"
+theme.fg_normal                                 = "#FF6D00"
+theme.fg_focus                                  = "#000000"
+theme.fg_urgent                                 = "#BF140F"
+theme.fg_minimize                               = "#B95659"
 theme.border_width                              = dpi(1)
-theme.border_normal                             = "#722525dc"
-theme.border_focus                              = "#722525dc"
-theme.border_marked                             = "#722525dc"
-theme.menu_border_width                         = 0
+theme.border_normal                             = "#8B17002c"
+theme.border_focus                              = "#8B17002c"
+theme.border_marked                             = "#8B17002c"
+theme.menu_border_width                         = 3
 theme.menu_width                                = dpi(130)
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
-theme.menu_fg_normal                            = "#782995"
-theme.menu_fg_focus                             = "#341975"
-theme.menu_bg_normal                            = "#75196918"
-theme.menu_bg_focus                             = "#e0a31f18"
+theme.menu_fg_normal                            = theme.fg_normal 
+theme.menu_fg_focus                             = theme.fg_focus
+theme.menu_bg_normal                            = theme.bg_normal
+theme.menu_bg_focus                             = theme.bg_focus
 theme.widget_temp                               = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.png"
@@ -48,7 +48,7 @@ theme.widget_clock                              = theme.confdir .. "/icons/clock
 theme.widget_vol                                = theme.confdir .. "/icons/spkr.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = 5
+theme.useless_gap                               = 10
 theme.layout_tile                               = theme.confdir .. "/icons/tile.png"
 theme.layout_tilegaps                           = theme.confdir .. "/icons/tilegaps.png"
 theme.layout_tileleft                           = theme.confdir .. "/icons/tileleft.png"
@@ -82,35 +82,30 @@ theme.titlebar_maximized_button_normal_inactive = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
-
+theme.taglist_fg_focus    = "#FF6D00"
+theme.taglist_fg_occupied = "#030303"
+theme.taglist_fg_urgent   = "#030303"
+theme.taglist_fg_empty    = "#030303"
+theme.taglist_spacing     = 10
+theme.taglist_font = "3270Medium NF 25"
 local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#ffd92e", "%A %d %B ") .. markup("#ffd92e", "| |") .. markup("#ffd92e", " %T "))
+local mytextclock = wibox.widget.textclock(markup(theme.fg_minimize, "%A %d %B ") .. markup(theme.fg_normal , " >> ") .. markup(theme.fg_normal , " %T "))
 mytextclock.font = theme.font
-
--- Calendar
-theme.cal = lain.widget.cal({
-    attach_to = { mytextclock },
-    notification_preset = {
-        font = theme.font,
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
-    }
-})
 
 -- Weather
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
+    weather_na_markup = markup.fontfg(theme.font, theme.fg_normal, "N/A "),
     settings = function()
         descr = weather_now["weather"][1]["description"]:lower()
         units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
+        widget:set_markup(markup.fontfg(theme.font,theme.fg_normal , descr .. " @ " .. units .. "°C "))
     end
 })
 -- counter
@@ -172,7 +167,7 @@ theme.volume = lain.widget.alsa({
             volume_now.level = volume_now.level .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#80A69C", volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg("nerd font 11",theme.fg_normal , volume_now.level .. "% "))
     end
 })
 
@@ -188,8 +183,8 @@ local netupinfo = lain.widget.net({
             theme.weather.update()
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#ffd92e", net_now.sent .. " "))
-        netdowninfo:set_markup(markup.fontfg(theme.font, "#ffd92e", net_now.received .. " "))
+        widget:set_markup(markup.fontfg(theme.font,theme.fg_normal, net_now.sent .. " "))
+        netdowninfo:set_markup(markup.fontfg(theme.font,theme.fg_normal, net_now.received .. " "))
     end
 })
 
@@ -308,15 +303,15 @@ function theme.at_screen_connect(s)
             theme.volume.widget,
            -- memicon,
            -- memory.widget,
-            cpuicon,
-            cpu.widget,
+           -- cpuicon,
+           -- cpu.widget,
             --fsicon,
             --theme.fs.widget,
            -- weathericon,
            -- theme.weather.widget,
            -- tempicon,
            -- temp.widget,
-            baticon,
+           -- baticon,
            -- clockicon,
             mytextclock,
             s.mylayoutbox,
