@@ -11,7 +11,7 @@ Xft*hinting: true
 Xft*hintstyle: hintfull
 URxvt*cursorUnderline: true
 Xft*rgba: rgb
-URxvt*geometry: 65x20
+URxvt*geometry: 70x20
 *internalBorder: 26
 URxvt*fading: 0
 URxvt*tintColor: #ffffff
@@ -21,26 +21,43 @@ URxvt*inheritPixmap: False
 
 URxvt.depth: 32
 
-URxvt*background:   [80]#282a36
-*foreground:   #eff0eb
-*cursorColor:  #9aedfe
+! special
+*.foreground:   #98d1ce
+*.background:   #0a0f14
+*.cursorColor:  #98d1ce
 
-*color0:      #33303b
-*color8:      #4f4b58
-*color1:      #ff5c57
-*color9:      #ff5c57
-*color2:      #5af78e
-*color10:     #5af78e
-*color3:      #f3f99d
-*color11:     #f3f99d
-*color4:      #57c7ff
-*color12:     #57c7ff
-*color5:      #ff6ac1
-*color13:     #ff6ac1
-*color6:      #9aedfe
-*color14:     #9aedfe
-*color7:      #eff0eb
-*color15:     #eff0eb
+! black
+*.color0:       #0a0f14
+*.color8:       #10151b
+
+! red
+*.color1:       #c33027
+*.color9:       #d26939
+
+! green
+*.color2:       #26a98b
+*.color10:      #081f2d
+
+! yellow
+*.color3:       #edb54b
+*.color11:      #245361
+
+! blue
+*.color4:       #195465
+*.color12:      #093748
+
+! magenta
+*.color5:       #4e5165
+*.color13:      #888ba5
+
+! cyan
+*.color6:       #33859d
+*.color14:      #599caa
+
+! white
+*.color7:       #98d1ce
+*.color15:      #d3ebe9
+
 
 !TABS
 !URxvt.perl-ext-common : default,tabbed,matcher

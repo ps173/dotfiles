@@ -19,7 +19,7 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # Fortune at start
 #./thebat2
-fortune | lolcat
+#fortune | lolcat
 
 # ALiases
 alias minecraft="cd Games && bash ~/Games/minecraft.sh"

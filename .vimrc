@@ -3,7 +3,6 @@ set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-set wildmenu
 set smartindent
 set nu relativenumber
 set nowrap
@@ -12,6 +11,7 @@ set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
+set termguicolors
 set incsearch
 set formatoptions-=cro
 set bg=dark
@@ -31,11 +31,10 @@ map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
 "Nerd Commenter
 
-map  <F1> :colorscheme dracula<CR>
-map  <F2> :colorscheme salvation<CR>
-map  <F3> :colorscheme gruvbox<CR>
-map  <F4> :colorscheme desert<CR>
-map  <F5> :colorscheme monokai<CR>
+map  <F1> :colorscheme ayu<CR>
+map  <F2> :colorscheme gruvbox<CR>
+map  <F3> :colorscheme desert<CR>
+map  <F4> :colorscheme salvation<CR>
 
 call plug#begin('~/.vim/plugged')
     Plug 'ervandew/supertab'
@@ -44,14 +43,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'gruvbox-community/gruvbox'
     Plug 'KabbAmine/vCoolor.vim'
-    Plug 'sickill/vim-monokai'
-    Plug 'dracula/vim' 
+    Plug 'ayu-theme/ayu-vim'
     Plug 'SirVer/ultisnips' "Requires Python
     Plug 'mlaursen/vim-react-snippets'
     Plug 'pangloss/vim-javascript'
     Plug 'lilydjwg/colorizer'
-    Plug 'mxw/vim-jsx'
     Plug 'branwright1/salvation-vim'
+    Plug 'mxw/vim-jsx'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'Yggdroot/indentLine' 
 call plug#end()
@@ -61,4 +59,5 @@ map  <F8> :!notes.sh<CR>
 
 "themes 
 let g:gruvbox_contrast_dark='hard'
+let ayucolor="dark"
 colorscheme gruvbox
