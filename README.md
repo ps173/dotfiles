@@ -33,7 +33,7 @@ paste file in home directory and then run
             xrdb ~/.Xresources
 
 #### Other things to install and do
-- [ ] In bashrc make alias for vim
+- [ ] In bashrc make alias for nvim
 - [ ] Install nvm
 - [ ] Install fortune 
 - [ ] Install chromium
