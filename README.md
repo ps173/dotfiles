@@ -50,4 +50,5 @@ paste file in home directory and then run
 4. paste tint2 folder in .config
 
 ###### Todo
-[] add more rice for awesome (one with power arrow theme)
+- [ ] add more rice for awesome (one with power arrow theme)
+- [ ] nvim config instead of .vimrc
