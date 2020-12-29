@@ -21,9 +21,9 @@ For running in vim
 
 I am sure this not the best script but i made it and works fine so i have no problems with it
 
-#### vimrc
+#### init.vim
 
-Vim setup that i use for web-development and programming
+Nvim setup that i use for web-development and programming
 
 
 #### Xresources for URXVT
@@ -51,4 +51,4 @@ paste file in home directory and then run
 
 ###### Todo
 - [ ] add more rice for awesome (one with power arrow theme)
-- [ ] nvim config instead of .vimrc
+- [x] ~~nvim config instead of .vimrc~~
