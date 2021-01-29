@@ -6,9 +6,48 @@
 				<execute>Thunar</execute>
 			</action>
 		</item>
-		<item label="Terminal">
+		<separator/>
+		<separator/>
+		<label>Development Apps</label>
+		<separator/>
+		<separator/>
+		<item label="VScode">
+			<action name="Execute">
+				<execute>code</execute>
+			</action>
+		</item>
+		<item label="Geany">
+			<action name="Execute">
+				<execute>geany</execute>
+			</action>
+		</item>
+		<item label="kitty">
+			<action name="Execute">
+				<execute>kitty</execute>
+			</action>
+		</item>
+		<item label="termite">
+			<action name="Execute">
+				<execute>termite</execute>
+			</action>
+		</item>
+		<item label="Sakura">
+			<action name="Execute">
+				<execute>sakura</execute>
+			</action>
+		</item>
+		<item label="URxvt">
 			<action name="Execute">
 				<execute>urxvt</execute>
+			</action>
+		</item>
+		<separator/>
+		<separator/>
+		<separator/>
+		<separator/>
+		<item label="notes">
+			<action name="Execute">
+				<execute>notes</execute>
 			</action>
 		</item>
 		<item label="Wallpaper">
@@ -16,14 +55,23 @@
 				<execute>nitrogen</execute>
 			</action>
 		</item>
-		<item label="Run">
+		<item label="Firefox">
 			<action name="Execute">
-				<execute>rofi -show run</execute>
+				<execute>firefox</execute>
 			</action>
 		</item>
-		<item label="Web browser">
+		<item label="Chromium">
 			<action name="Execute">
 				<execute>chromium-browser</execute>
+			</action>
+		</item>
+		<separator/>
+		<separator/>
+		<separator/>
+		<separator/>
+		<item label="Run">
+			<action name="Execute">
+				<execute>rofi -w -theme gruvbox-dark-hard -show run -sep -columns 3 -width 70 -font &quot;ubuntu 10&quot;</execute>
 			</action>
 		</item>
 		<!-- This requires the presence of the 'openbox-menu' package to work -->
@@ -31,6 +79,11 @@
 		<separator/>
 		<menu execute="/usr/bin/obamenu" id="applications-menu" label="Applications"/>
 		<separator/>
+		<item label="lxappearance">
+			<action name="Execute">
+				<execute>lxappearance</execute>
+			</action>
+		</item>
 		<item label="ObMenu">
 			<action name="Execute">
 				<execute>obmenu</execute>
