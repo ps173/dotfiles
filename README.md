@@ -39,6 +39,7 @@ paste file in home directory and then run
 - [ ] Install chromium
 - [ ] Install Rofi and switch to android notification theme
 - [ ] Install CMUS & tty-clock
+- [ ] Install kitty terminal
 
 #### Openbox 
  Incomplete and may not work
@@ -49,6 +50,15 @@ paste file in home directory and then run
 3. install tint2 
 4. paste tint2 folder in .config
 
+#### Herbstluftwm 
+ Incomplete and may not work
+  
+  required : kitty , polybar
+
+**FOR SETTING herbstluftwm**
+1. paste files in .config
+2. Download polybar
+
 ###### Todo
-- [ ] add more rice for awesome (one with power arrow theme)
+- [x] add more rice for awesome (one with power arrow theme)
 - [x] ~~nvim config instead of .vimrc~~

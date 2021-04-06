@@ -7,6 +7,7 @@ set wildmenu
 set smartindent
 set rnu relativenumber
 set nowrap
+set nohlsearch
 set smartcase 
 set noswapfile
 set nobackup
@@ -18,13 +19,21 @@ set formatoptions-=cro
 set background=dark
 let g:mapleader=' '
 
-
 if (has("termguicolors"))
  set termguicolors
 endif
 
 "Plugins
 call plug#begin("~/.vim/plugged")
+
+    "Themes
+    Plug 'ps173/dadara' 
+    Plug 'morhetz/gruvbox'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'chriskempson/base16-vim'
+    Plug 'ayu-theme/ayu-vim' " or other package manager
+    Plug 'tomasiser/vim-code-dark'
+
     "Floaterm
     Plug 'voldikss/vim-floaterm' 
     
@@ -42,17 +51,31 @@ call plug#begin("~/.vim/plugged")
 
     " Intellisense and code completion with syntax highlighting
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+    let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-tsserver']
     Plug 'sheerun/vim-polyglot'
     Plug 'preservim/nerdcommenter'
+    Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' } 
     
+    " Airline
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 " colorscheme
 syntax on
-colorscheme dadara
-"highlight Normal ctermbg=NONE guibg=NONE
+let g:gruvbox_contrast_dark = 'hard'
+let ayucolor="dark"
+colorscheme gruvbox
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+map <leader>1 :colorscheme ayu <CR>
+map <leader>2 :colorscheme jellybeans <CR>
+map <leader>3 :colorscheme dadara <CR>
+map <leader>4 :colorscheme codedark <CR>
+map <leader>5 :colorscheme alduin <CR>
+map <leader>6 :colorscheme Revolution <CR>
+map <leader>0 :colorscheme gruvbox <CR>
 
 " NERD TREE AND ICONS
 let g:NERDTreeShowHidden = 1
@@ -122,7 +145,9 @@ nnoremap <silent> <C-Left>  :vertical resize -2<CR>
 nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
 
-
+"Airline stuff
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " Important for colorschemes
 nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -146,29 +171,38 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-let g:currentmode={
-       \ 'n'  : 'NORMAL ',
-       \ 'v'  : 'VISUAL ',
-       \ 'V'  : 'V·Line ',
-       \ '' : 'V·Block ',
-       \ 'i'  : 'INSERT ',
-       \ 'R'  : 'R ',
-       \ 'Rv' : 'V·Replace ',
-       \ 'c'  : 'Command ',
-       \}
+function! MyStline()
+    let g:currentmode={
+           \ 'n'  : 'NORMAL ',
+           \ 'v'  : 'VISUAL ',
+           \ 'V'  : 'V·Line ',
+           \ '' : 'V·Block ',
+           \ 'i'  : 'INSERT ',
+           \ 'R'  : 'R ',
+           \ 'Rv' : 'V·Replace ',
+           \ 'c'  : 'Command ',
+           \}
+    
+    set statusline=
+    set statusline+=%#Visual#
+    set statusline+=\<<\ %{toupper(g:currentmode[mode()])} 
+    set statusline+=\>>
+    set statusline+=%#DiffChange#
+    set statusline+=%{StatuslineGit()}
+    set statusline+=\ %f
+    set statusline+=%m
+    set statusline+=%=
+    set statusline+=\ %y
+    set statusline+=\ %p%%  
+    set statusline+=\   
+    set statusline+=%#Visual#
+    set statusline+=\ %c
+    set statusline+=\ %l/%L
+endfunction
 
-set statusline=
-set statusline+=%#Visual#
-set statusline+=\<<\ %{toupper(g:currentmode[mode()])} 
-set statusline+=\>>
-set statusline+=%#DiffChange#
-set statusline+=%{StatuslineGit()}
-set statusline+=\ %f
-set statusline+=%m
-set statusline+=%=
-set statusline+=\ %y
-set statusline+=\ %p%%  
-set statusline+=\   
-set statusline+=%#Visual#
-set statusline+=\ %c
-set statusline+=\ %l/%L
+function! Transparency()
+    highlight Normal ctermbg=NONE guibg=NONE
+endfunction
+
+map <C-a> :call MyStline()<CR>
+map <leader>ew :call Transparency()<CR>
