@@ -141,6 +141,7 @@ hc set frame_padding 1
 hc set smart_window_surroundings 0
 hc set smart_frame_surroundings 0
 hc set mouse_recenter_gap 0
+
 #Protecc polybar
 herbstclient pad 0 23 0 0 0 # Only change 2nd value
 
