@@ -51,8 +51,10 @@ paste file in home directory and then run
 4. paste tint2 folder in .config
 
 #### Herbstluftwm 
- Incomplete and may not work
-  
+
+![Rice](./screenshots/nord-herbluftwm.png)
+
+
   required : kitty , polybar
 
 **FOR SETTING herbstluftwm**
