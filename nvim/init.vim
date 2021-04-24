@@ -1,9 +1,11 @@
 "--BASIC SETTINGS 
+syntax on
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set wildmenu
+set mouse=a
 set smartindent
 set rnu relativenumber
 set nowrap
@@ -18,29 +20,29 @@ set incsearch
 set formatoptions-=cro
 set background=dark
 let g:mapleader=' '
+set t_Co=256
 
 if (has("termguicolors"))
  set termguicolors
 endif
 
 "Plugins
-call plug#begin("~/.vim/plugged")
+call plug#begin("~/.nvim/plugged")
 
     "Themes
     Plug 'ps173/dadara' 
     Plug 'morhetz/gruvbox'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'chriskempson/base16-vim'
     Plug 'ayu-theme/ayu-vim' " or other package manager
     Plug 'tomasiser/vim-code-dark'
+    Plug 'liuchengxu/space-vim-dark'
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'chriskempson/base16-vim'
+    Plug 'bluz71/vim-moonfly-colors'
 
-    "Floaterm
-    Plug 'voldikss/vim-floaterm' 
-    
     "Miscellaneous
     Plug 'jiangmiao/auto-pairs'
     Plug 'ervandew/supertab'
-
+    
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/colorizer'
@@ -50,11 +52,11 @@ call plug#begin("~/.vim/plugged")
     Plug 'ryanoasis/vim-devicons'
 
     " Intellisense and code completion with syntax highlighting
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-tsserver']
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-tsserver']
     Plug 'sheerun/vim-polyglot'
     Plug 'preservim/nerdcommenter'
-    Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' } 
+    "Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' } 
     
     " Airline
     Plug 'vim-airline/vim-airline'
@@ -63,19 +65,11 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 " colorscheme
-syntax on
 let g:gruvbox_contrast_dark = 'hard'
-let ayucolor="dark"
-colorscheme gruvbox
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-map <leader>1 :colorscheme ayu <CR>
-map <leader>2 :colorscheme jellybeans <CR>
-map <leader>3 :colorscheme dadara <CR>
-map <leader>4 :colorscheme codedark <CR>
-map <leader>5 :colorscheme alduin <CR>
-map <leader>6 :colorscheme Revolution <CR>
-map <leader>0 :colorscheme gruvbox <CR>
+let ayucolor="mirage"
+colorscheme dracula
+"colorscheme gruvbox
+"highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " NERD TREE AND ICONS
 let g:NERDTreeShowHidden = 1
@@ -158,6 +152,14 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" FORMATTERS
+au FileType javascript setlocal formatprg=prettier
+au FileType javascript.jsx setlocal formatprg=prettier
+au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType html setlocal formatprg=js-beautify\ --type\ html
+au FileType scss setlocal formatprg=prettier\ --parser\ css
+au FileType css setlocal formatprg=prettier\ --parser\ css
+
 
 
 " Status line
@@ -206,3 +208,29 @@ endfunction
 
 map <C-a> :call MyStline()<CR>
 map <leader>ew :call Transparency()<CR>
+
+function! Babablacksheeps()
+    colorscheme dracula 
+    hi Normal guifg=#fff1e6 ctermbg=NONE guibg=NONE
+    hi Label guifg=#ffffff guibg=NONE
+    hi Special guifg=#ffffff guibg=NONE
+    hi Define guifg=#ffffff guibg=NONE
+    hi Function guifg=#ffffff guibg=NONE
+    hi Type guifg=#ffffff guibg=NONE
+
+    "Line Numbers
+    hi LineNR guibg=NONE guifg=#C99266
+    hi CursorLineNR guibg=NONE guifg=#FFBA00
+    hi CursorLine guibg=#171821 guifg=NONE
+
+    "Strings
+    hi String guifg=#FFFFD7 guibg=NONE
+
+    "Number
+    hi Number guifg=#C3EDFF guibg=NONE
+endfunction
+
+"call Transparency()
+"call Babablacksheeps()
+
+
