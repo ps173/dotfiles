@@ -1,3 +1,8 @@
+# DOT FILES
+
+#### Dependencies : kitty, polybar, tint2, rofi
+
+
 ## Awesome config
 It was made from copy cat config. looks okay.
 To make it work:
@@ -21,9 +26,9 @@ For running in vim
 
 I am sure this not the best script but i made it and works fine so i have no problems with it
 
-#### init.vim
+## init.vim
 
-Nvim setup that i use for web-development and programming
+Nvim setup that i use for programming
 
 
 #### Xresources for URXVT
@@ -41,8 +46,7 @@ paste file in home directory and then run
 - [ ] Install CMUS & tty-clock
 - [ ] Install kitty terminal
 
-#### Openbox 
- Incomplete and may not work
+## Openbox 
 
 **FOR SETTING Openbox**
 1. paste files in .config
@@ -50,12 +54,9 @@ paste file in home directory and then run
 3. install tint2 
 4. paste tint2 folder in .config
 
-#### Herbstluftwm 
+## Herbstluftwm 
 
 ![Rice](./screenshots/nord-herbluftwm.png)
-
-
-  required : kitty , polybar
 
 **FOR SETTING herbstluftwm**
 1. paste files in .config
