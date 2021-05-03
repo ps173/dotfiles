@@ -765,3 +765,5 @@ end)
 
 -- Autostart
 awful.spawn.with_shell("compton")
+awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("nm-applet")
