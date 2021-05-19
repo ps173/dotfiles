@@ -1,7 +1,7 @@
 # DOT FILES
 
 #### Dependencies : kitty, polybar, tint2, rofi
-
+#### fonts : [my favorite font](https://github.com/sainnhe/icursive-nerd-font/wiki/Preview#hack-icursive-s12)
 
 ## Awesome config
 It was made from copy cat config. looks okay.
