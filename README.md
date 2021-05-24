@@ -40,7 +40,7 @@ essentials  -
     3. nvim-lsp
 
 ### Other things to install and do
-- [  ] Install nvm
+- [ ] Install nvm
 - [ ] Install go
 - [ ] Install mongoDB
 - [ ] Install postgres
