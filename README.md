@@ -1,8 +1,9 @@
 # DOT FILES
 
-<<<<<<< HEAD
 ![Rice](./screenshots/nord-herbluftwm.png)
+
 =======
+
 #### Dependencies : kitty, polybar, tint2, rofi
 #### fonts : [my favorite font](https://github.com/sainnhe/icursive-nerd-font/wiki/Preview#hack-icursive-s12)
 
