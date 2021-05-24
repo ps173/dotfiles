@@ -40,19 +40,19 @@ essentials  -
     3. nvim-lsp
 
 ### Other things to install and do
-- [] Install nvm
-- [] Install go
-- [] Install mongoDB
-- [] Install postgres
-- [] Install live server
-- [] Install fzf 
-- [] Install tmux 
-- [] Install ohmyzsh
-- [] Install fortune 
-- [] Install chromium
-- [] Install chrome
-- [] Install Rofi 
-- [] Install Vim Plug 
-- [] Install Zsh plugins
-- [] Install ptsh 
-- [] Set Up the startpage 
+- [  ] Install nvm
+- [ ] Install go
+- [ ] Install mongoDB
+- [ ] Install postgres
+- [ ] Install live server
+- [ ] Install fzf 
+- [ ] Install tmux 
+- [ ] Install ohmyzsh
+- [ ] Install fortune 
+- [ ] Install chromium
+- [ ] Install chrome
+- [ ] Install Rofi 
+- [ ] Install Vim Plug 
+- [ ] Install Zsh plugins
+- [ ] Install ptsh 
+- [ ] Set Up the startpage 
