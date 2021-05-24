@@ -2,47 +2,8 @@
 
 ![Rice](./screenshots/nord-herbluftwm.png)
 
-=======
-
-#### Dependencies : kitty, polybar, tint2, rofi
-#### fonts : [my favorite font](https://github.com/sainnhe/icursive-nerd-font/wiki/Preview#hack-icursive-s12)
-
-## Awesome config
-It was made from copy cat config. looks okay.
-To make it work:
-            
-            cd dotfiles
-            cp ./awesome ~/.config/
-
-#### notes.sh
-A script for note taking in vim and terminal.
-
-Setup:   
-      check if the file is made executable or not. If not mark it executable   
-      
-      Paste it inside usr/local/bin.
-
-That's it for running in terminal 
-For running in vim             
-      
-      add a key bind for !notes.sh
-
-
-I am sure this not the best script but i made it and works fine so i have no problems with it
-
-## init.vim
-
-Nvim setup that i use for programming
-
-
-#### Xresources for URXVT
-
-paste file in home directory and then run
-            
-            xrdb ~/.Xresources
->>>>>>> f234e04197008336c4ce24dfb9f631ed79230a88
-
 #### Dependencies : xfce4 terminal(wait what?), polybar, tint2, rofi, tmux, cmus
+#### fonts : [my favorite font](https://github.com/sainnhe/icursive-nerd-font/wiki/Preview#hack-icursive-s12)
  
 **Prerequisites : Neovim 0.5**
 
