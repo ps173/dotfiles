@@ -1,67 +1,57 @@
 # DOT FILES
 
-#### Dependencies : kitty, polybar, tint2, rofi
+![Rice](./screenshots/nord-herbluftwm.png)
 
+#### Dependencies : xfce4 terminal(wait what?), polybar, tint2, rofi, tmux, cmus
+ 
+**Prerequisites : Neovim 0.5**
 
-## Awesome config
+## Setting up everything
+
+### FOR SETTING Openbox
+1. paste files in .config
+2. Download openbox themes from [here](https://github.com/addy-dclxvi/openbox-theme-collections)
+3. install tint2 
+4. paste tint2 folder in .config
+
+### Awesome config
 It was made from copy cat config. looks okay.
 To make it work:
             
             cd dotfiles
             cp ./awesome ~/.config/
 
-#### notes.sh
-A script for note taking in vim and terminal.
 
-Setup:   
-      check if the file is made executable or not. If not mark it executable   
-      
-      Paste it inside usr/local/bin.
-
-That's it for running in terminal 
-For running in vim             
-      
-      add a key bind for !notes.sh
-
-
-I am sure this not the best script but i made it and works fine so i have no problems with it
-
-## init.vim
-
-Nvim setup that i use for programming
-
-
-#### Xresources for URXVT
-
-paste file in home directory and then run
-            
-            xrdb ~/.Xresources
-
-#### Other things to install and do
-- [ ] In bashrc make alias for nvim
-- [ ] Install nvm
-- [ ] Install fortune 
-- [ ] Install chromium
-- [ ] Install Rofi and switch to android notification theme
-- [ ] Install CMUS & tty-clock
-- [ ] Install kitty terminal
-
-## Openbox 
-
-**FOR SETTING Openbox**
-1. paste files in .config
-2. Download openbox themes from [here](https://github.com/addy-dclxvi/openbox-theme-collections)
-3. install tint2 
-4. paste tint2 folder in .config
-
-## Herbstluftwm 
-
-![Rice](./screenshots/nord-herbluftwm.png)
-
-**FOR SETTING herbstluftwm**
+### FOR SETTING herbstluftwm (Currently My main driver)
 1. paste files in .config
 2. Download polybar
+3. Paste polybar config
 
-###### Todo
-- [x] add more rice for awesome (one with power arrow theme)
-- [x] ~~nvim config instead of .vimrc~~
+### FOR SETTING tmux (the best app that gies beautifully with neovim)
+1. paste files in XDG_HOME or homedir
+
+### init.vim
+
+Nvim setup that I use for programming i.e. the bleeding edge
+essentials  - 
+    1. Gruvbox-material ,sonokai and dracula 
+    2. Telescope (Yes)
+    3. nvim-lsp
+
+### Other things to install and do
+- [] Install nvm
+- [] Install go
+- [] Install mongoDB
+- [] Install postgres
+- [] Install live server
+- [] Install fzf 
+- [] Install tmux 
+- [] Install ohmyzsh
+- [] Install fortune 
+- [] Install chromium
+- [] Install chrome
+- [] Install Rofi 
+- [] Install Vim Plug 
+- [] Install Zsh plugins
+- [] Install ptsh 
+- [] Set Up the startpage 

@@ -70,9 +70,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+plugins=(
+        git
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+        )
 source $ZSH/oh-my-zsh.sh
+# source $ZSH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # User configuration
 
@@ -96,16 +100,46 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+#Editor 
+export VISUAL=gvim
+export EDITOR=nvim
+export PAGER=less
+export NNN_PLUG='y:kak_open;'
+export NNN_USE_EDITOR=1
+export NNN_DE_FILE_MANAGER=pcmanfm
+
 #Vim support
 set -o vi
 
-# My aliases
+cdls() {
+        local dir="$1"
+        local dir="${dir:=$HOME}"
+        if [[ -d "$dir" ]]; then
+                cd "$dir" >/dev/null; ls --color=auto
+        else
+                echo "bash: cdls: $dir: Directory not found"
+        fi
+}
+
+#My aliases
+alias v4="nvim4 -u ~/.vimrc"
 alias v="nvim"
+alias cd="cdls"
 alias wifil="nmcli d wifi list"
 alias nfetch="neofetch --disable CPU GPU --backend auto --source auto"
+alias rec="ffmpeg -video_size 1366x768 -framerate 25 -f x11grab -i :0.0 output.mp4"
+alias tu="tmux -u"
+alias r="fc -s"
+alias gc="git commit"
+alias gcm="git commit -m 'Commited Changes'"
+alias gaa="git add ."
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+source ptSh_set_aliases
+#export PATH="/home/psxas/.local/bin:$PATH"
 
 #eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

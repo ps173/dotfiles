@@ -4,10 +4,11 @@ set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
+set guicursor=
 set wildmenu
-set mouse=a
+"set mouse=a
 set smartindent
-set rnu relativenumber
+set nu relativenumber
 set nowrap
 set nohlsearch
 set smartcase 
@@ -20,6 +21,7 @@ set incsearch
 set formatoptions-=cro
 set background=dark
 let g:mapleader=' '
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**node_modules/     " MacOSX/Linux
 set t_Co=256
 
 if (has("termguicolors"))
@@ -29,20 +31,28 @@ endif
 "Plugins
 call plug#begin("~/.nvim/plugged")
 
+    " Sane defaults
+    Plug 'tpope/vim-sensible'
+
     "Themes
-    Plug 'ps173/dadara' 
     Plug 'morhetz/gruvbox'
     Plug 'ayu-theme/ayu-vim' " or other package manager
     Plug 'tomasiser/vim-code-dark'
-    Plug 'liuchengxu/space-vim-dark'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'bluz71/vim-moonfly-colors'
-
-    Plug 'tpope/vim-sensible'
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'wojciechkepka/vim-github-dark'
+    Plug 'sainnhe/sonokai'
+    Plug 'sainnhe/gruvbox-material'
 
     "Miscellaneous
     Plug 'jiangmiao/auto-pairs'
-    Plug 'ervandew/supertab'
+    Plug 'Yggdroot/indentLine'
+    Plug 'mhinz/vim-startify'
+    " Plug 'hrsh7th/nvim-compe'
+    " Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
+
     
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
@@ -50,31 +60,32 @@ call plug#begin("~/.nvim/plugged")
 
     " File explorer
     Plug 'scrooloose/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
+
+    " Fuzzy Finding
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
     " Intellisense and code completion with syntax highlighting
-    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    "let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-tsserver']
     Plug 'sheerun/vim-polyglot'
+    Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
     Plug 'epilande/vim-react-snippets'
-    Plug 'preservim/nerdcommenter'
-    "Plug 'neovim/nvim-lspconfig'
-    "Plug 'nvim-lua/completion-nvim'
     "Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' } 
-    
-    " Airline
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'RRethy/vim-illuminate'
+    Plug 'tpope/vim-commentary'
+   
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'kabouzeid/nvim-lspinstall'
+
+    " Statusline at bottom
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'romgrk/barbar.nvim'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'hoob3rt/lualine.nvim'
 
 call plug#end()
 
-" colorscheme
-let g:gruvbox_contrast_dark = 'hard'
-let ayucolor="mirage"
-colorscheme dracula
-"colorscheme gruvbox
-"highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " NERD TREE AND ICONS
 let g:NERDTreeShowHidden = 1
@@ -88,11 +99,25 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " File explorer plugin
 map <C-b> :NERDTreeToggle<CR>
 
-" nerd commenter
-noremap <leader>c :NERDCommenterComment<CR>
+" Startify
+let g:startify_session_dir = '~/.config/nvim/session'
 
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<C-l>"
+"ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+" list all snippets for current filetype
+let g:UltiSnipsListSnippets="<c-l>"
+
+
+" Telescope by TEEJ
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fw <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+
+
+"supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " INTEGRATED TERMINAL
 " open new split panes to right and below
@@ -132,11 +157,10 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" Disabling hjkl
+
 " mapping escape to ctrl c
 map <Esc><C-c> <CR>
-
-inoremap jk <Esc>
-inoremap kj <Esc>
 
 " alternater way to save
 nnoremap <silent> <C-s> :w<CR>
@@ -147,18 +171,14 @@ nnoremap <silent> <C-Left>  :vertical resize -2<CR>
 nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
 
-"Airline stuff
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
 " Important for colorschemes
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" nmap <C-S-P> :call <SID>SynStack()<CR>
+" function! <SID>SynStack()
+"   if !exists("*synstack")
+"     return
+"   endif
+"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunc
 
 " FORMATTERS
 au FileType javascript setlocal formatprg=prettier
@@ -171,6 +191,8 @@ au FileType css setlocal formatprg=prettier\ --parser\ css
 
 
 " Status line
+
+" require('lualine').setup()
 
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -186,7 +208,7 @@ function! MyStline()
            \ 'n'  : 'NORMAL ',
            \ 'v'  : 'VISUAL ',
            \ 'V'  : 'V·Line ',
-           \ '' : 'V·Block ',
+           \ '' : 'V·Block ',
            \ 'i'  : 'INSERT ',
            \ 'R'  : 'R ',
            \ 'Rv' : 'V·Replace ',
@@ -211,21 +233,17 @@ function! MyStline()
 endfunction
 
 function! Transparency()
-    highlight Normal ctermbg=NONE guibg=NONE
+    hi Normal ctermbg=NONE guibg=NONE
+    hi LineNR guibg=NONE ctermbg=NONE
+    hi CursorLineNR guibg=NONE ctermbg=NONE
+    hi SignColumn ctermbg=NONE guibg=NONE
+    hi MsgArea ctermbg=NONE guibg=NONE
 endfunction
 
-map <C-a> :call MyStline()<CR>
 map <leader>ew :call Transparency()<CR>
 
 function! Babablacksheeps()
     colorscheme dracula 
-    hi Normal guifg=#fff1e6 ctermbg=NONE guibg=NONE
-    hi Label guifg=#ffffff guibg=NONE
-    hi Special guifg=#ffffff guibg=NONE
-    hi Define guifg=#ffffff guibg=NONE
-    hi Function guifg=#ffffff guibg=NONE
-    hi Type guifg=#ffffff guibg=NONE
-
     "Line Numbers
     hi LineNR guibg=NONE guifg=#C99266
     hi CursorLineNR guibg=NONE guifg=#FFBA00
@@ -238,7 +256,6 @@ function! Babablacksheeps()
     hi Number guifg=#C3EDFF guibg=NONE
 endfunction
 
-"call Transparency()
 "call Babablacksheeps()
 
 autocmd VimEnter *
@@ -246,69 +263,91 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
- "-------------------- LSP ---------------------------------
-":lua << EOF
-  "local nvim_lsp = require('lspconfig')
+" colorscheme
 
-  "local on_attach = function(client, bufnr)
-    "require('completion').on_attach()
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 
-    "local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    "local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-    "buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+let g:onedark_termcolors=256
+let g:gruvbox_contrast_dark = 'hard'
+let ayucolor="mirage"
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_enable_italic = 1
+"let g:sonokai_disable_italic_comment = 1
+let g:gruvbox_material_transparent_background = 1
+"let g:sonokai_transparent_background = 1
+let g:sonokai_menu_selection_background = 'blue'
 
-    "-- Mappings
-    "local opts = { noremap=true, silent=true }
-    "buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    "buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    "buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    "buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    "buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    "buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    "buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    "buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    "buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    "buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    "buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    "buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    "buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    "buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    "buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+colorscheme gruvbox-material
+"call Transparency()
+"colorscheme gruvbox
+call MyStline()
 
-    "-- Set some keybinds conditional on server capabilities
-    "if client.resolved_capabilities.document_formatting then
-        "buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    "elseif client.resolved_capabilities.document_range_formatting then
-        "buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    "end
+" LUA COMPLETION
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-    "-- Set autocommands conditional on server_capabilities
-    "if client.resolved_capabilities.document_highlight then
-        "require('lspconfig').util.nvim_multiline_command [[
-        ":hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-        ":hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-        ":hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-        "augroup lsp_document_highlight
-            "autocmd!
-            "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            "autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        "augroup END
-        "]]
-    "end
-  "end
+lua << EOF
+local nvim_lsp = require('lspconfig')
 
-  "local servers = {'pyright', 'gopls', 'rust_analyzer'}
-  "for _, lsp in ipairs(servers) do
-    "nvim_lsp[lsp].setup {
-      "on_attach = on_attach,
-    "}
-  "end
-"EOF
+-- Use an on_attach function to only map the following keys 
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
- "Completion
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
- "-------------------- LSP ---------------------------------
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
+-- map buffer local keybindings when the language server attaches
+local servers = { "pyright", "tsserver" }
+for _, lsp in ipairs(servers) do
+  --nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
+  nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+EOF
+
