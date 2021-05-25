@@ -4,7 +4,6 @@ set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-set guicursor=
 set wildmenu
 "set mouse=a
 set smartindent
@@ -31,12 +30,9 @@ endif
 "Plugins
 call plug#begin("~/.nvim/plugged")
 
-    " Sane defaults
-    Plug 'tpope/vim-sensible'
-
     "Themes
     Plug 'morhetz/gruvbox'
-    Plug 'ayu-theme/ayu-vim' " or other package manager
+    Plug 'ayu-theme/ayu-vim' 
     Plug 'tomasiser/vim-code-dark'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'bluz71/vim-moonfly-colors'
@@ -50,8 +46,6 @@ call plug#begin("~/.nvim/plugged")
     Plug 'jiangmiao/auto-pairs'
     Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'
-    " Plug 'hrsh7th/nvim-compe'
-    " Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
     
     "CSS properties and color selector
@@ -72,17 +66,17 @@ call plug#begin("~/.nvim/plugged")
     Plug 'SirVer/ultisnips'
     Plug 'epilande/vim-react-snippets'
     "Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' } 
-    " Plug 'RRethy/vim-illuminate'
+    Plug 'RRethy/vim-illuminate'
     Plug 'tpope/vim-commentary'
-   
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
+    Plug 'hrsh7th/nvim-compe'
+    Plug 'sbdchd/neoformat'
 
     " Statusline at bottom
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'romgrk/barbar.nvim'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'hoob3rt/lualine.nvim'
 
 call plug#end()
 
@@ -118,6 +112,35 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 "supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
+
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " INTEGRATED TERMINAL
 " open new split panes to right and below
@@ -158,6 +181,12 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " Disabling hjkl
+
+" Auto formatting use neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 " mapping escape to ctrl c
 map <Esc><C-c> <CR>
@@ -295,10 +324,10 @@ let g:gruvbox_material_transparent_background = 1
 "let g:sonokai_transparent_background = 1
 let g:sonokai_menu_selection_background = 'blue'
 
-colorscheme gruvbox-material
+colorscheme onedark
 "call Transparency()
 "colorscheme gruvbox
-call MyStline()
+" call MyStline()
 
 " LUA COMPLETION
 set completeopt=menuone,noinsert,noselect
@@ -346,8 +375,8 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = { "pyright", "tsserver" }
 for _, lsp in ipairs(servers) do
-  --nvim_lsp[lsp].setup { on_attach = require'completion'.on_attach }
   nvim_lsp[lsp].setup { on_attach = on_attach }
+  --nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 EOF
 
