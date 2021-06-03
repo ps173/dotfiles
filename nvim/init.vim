@@ -1,11 +1,13 @@
 "--BASIC SETTINGS 
 syntax on
 set noerrorbells
-set tabstop=4 softtabstop=4
+set tabstop=4 
+set softtabstop=4
 set shiftwidth=4
 set expandtab
+set encoding=utf8
 set wildmenu
-"set mouse=a
+" set mouse=a
 set smartindent
 set nu relativenumber
 set nowrap
@@ -22,6 +24,7 @@ set background=dark
 let g:mapleader=' '
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**node_modules/     " MacOSX/Linux
 set t_Co=256
+set hidden
 
 if (has("termguicolors"))
  set termguicolors
@@ -41,16 +44,19 @@ call plug#begin("~/.nvim/plugged")
     Plug 'wojciechkepka/vim-github-dark'
     Plug 'sainnhe/sonokai'
     Plug 'sainnhe/gruvbox-material'
+    Plug 'cocopon/iceberg.vim'
 
     "Miscellaneous
     Plug 'jiangmiao/auto-pairs'
     Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'
+    Plug 'akinsho/nvim-toggleterm.lua'
 
     
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/colorizer'
+    Plug 'cocopon/colorswatch.vim'
 
     " File explorer
     Plug 'scrooloose/nerdtree'
@@ -64,7 +70,7 @@ call plug#begin("~/.nvim/plugged")
     Plug 'sheerun/vim-polyglot'
     Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
-    Plug 'epilande/vim-react-snippets'
+    Plug 'mlaursen/vim-react-snippets'
     "Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' } 
     Plug 'RRethy/vim-illuminate'
     Plug 'tpope/vim-commentary'
@@ -72,11 +78,17 @@ call plug#begin("~/.nvim/plugged")
     Plug 'kabouzeid/nvim-lspinstall'
     Plug 'hrsh7th/nvim-compe'
     Plug 'sbdchd/neoformat'
+    Plug 'mattn/emmet-vim'
+    Plug 'numToStr/Navigator.nvim'
 
     " Statusline at bottom
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'romgrk/barbar.nvim'
-    Plug 'ryanoasis/vim-devicons'
+    " Plug 'kyazdani42/nvim-web-devicons'
+    " Plug 'romgrk/barbar.nvim'
+    " Plug 'adelarsq/neoline.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'cj/vim-webdevicons'
+    
 
 call plug#end()
 
@@ -102,16 +114,29 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-l>"
 
 
+" AIRLINE
+let airline_theme="dracula"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
 " Telescope by TEEJ
-nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>p <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fw <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
+let g:toggleterm_terminal_mapping = '<C-t>'
+" or manually...
+autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><c-t> <C-\><C-n>:exe v:count1 . "ToggleTerm"<CR>
 
+" By applying the mappings this way you can pass a count to your
+" mapping to open a specific window.
+" For example: 2<C-t> will open terminal 2
+nnoremap <silent><c-t> :<c-u>exe v:count1 . "ToggleTerm"<CR>
+inoremap <silent><c-t> <Esc>:<c-u>exe v:count1 . "ToggleTerm"<CR>
 
 "supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:compe = {}
 let g:compe.enabled = v:true
 let g:compe.autocomplete = v:true
@@ -134,6 +159,7 @@ let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 let g:compe.source.ultisnips = v:true
+let g:user_emmet_leader_key='<Tab>'
 
 
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -201,26 +227,15 @@ nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
 
 " Important for colorschemes
-" nmap <C-S-P> :call <SID>SynStack()<CR>
-" function! <SID>SynStack()
-"   if !exists("*synstack")
-"     return
-"   endif
-"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-" endfunc
-
-" FORMATTERS
-au FileType javascript setlocal formatprg=prettier
-au FileType javascript.jsx setlocal formatprg=prettier
-au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-au FileType html setlocal formatprg=js-beautify\ --type\ html
-au FileType scss setlocal formatprg=prettier\ --parser\ css
-au FileType css setlocal formatprg=prettier\ --parser\ css
-
-
+nmap <C-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " Status line
-
 " require('lualine').setup()
 
 function! GitBranch()
@@ -324,10 +339,11 @@ let g:gruvbox_material_transparent_background = 1
 "let g:sonokai_transparent_background = 1
 let g:sonokai_menu_selection_background = 'blue'
 
-colorscheme onedark
+colorscheme colorama 
 "call Transparency()
 "colorscheme gruvbox
 " call MyStline()
+"
 
 " LUA COMPLETION
 set completeopt=menuone,noinsert,noselect
@@ -370,6 +386,7 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- When U have to many splits : OH MY ZSH
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
 -- map buffer local keybindings when the language server attaches
@@ -378,5 +395,19 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
   --nvim_lsp[lsp].setup { on_attach = on_attach }
 end
-EOF
 
+-- Keybindings
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+map('n', "<A-h>", "<CMD>lua require('Navigator').left()<CR>", opts)
+map('n', "<A-k>", "<CMD>lua require('Navigator').up()<CR>", opts)
+map('n', "<A-l>", "<CMD>lua require('Navigator').right()<CR>", opts)
+map('n', "<A-j>", "<CMD>lua require('Navigator').down()<CR>", opts)
+map('n', "<A-p>", "<CMD>lua require('Navigator').previous()<CR>", opts)
+require('Navigator').setup({
+    auto_save = 'current',
+    disable_on_zoom = true
+})
+
+EOF
