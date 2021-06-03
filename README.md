@@ -3,6 +3,7 @@
 ![Rice](./screenshots/nord-herbluftwm.png)
 
 #### Dependencies : xfce4 terminal(wait what?), polybar, tint2, rofi, tmux, cmus
+(ditched xfce4 terminal cause it did not support powerline fonts)
 #### fonts : [my favorite font](https://github.com/sainnhe/icursive-nerd-font/wiki/Preview#hack-icursive-s12)
  
 **Prerequisites : Neovim 0.5**
