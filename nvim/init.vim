@@ -5,9 +5,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set encoding=utf8
+" set encoding=utf8
 set wildmenu
-" set mouse=a
+set mouse=a
 set smartindent
 set nu relativenumber
 set nowrap
@@ -22,8 +22,8 @@ set incsearch
 set formatoptions-=cro
 set background=dark
 let g:mapleader=' '
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,**node_modules/     " MacOSX/Linux
-set t_Co=256
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*node_modules/     " MacOSX/Linux
+" set t_Co=256
 set hidden
 
 if (has("termguicolors"))
@@ -51,7 +51,7 @@ call plug#begin("~/.nvim/plugged")
     Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'
     Plug 'akinsho/nvim-toggleterm.lua'
-
+    Plug 'junegunn/goyo.vim'
     
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
@@ -82,12 +82,13 @@ call plug#begin("~/.nvim/plugged")
     Plug 'numToStr/Navigator.nvim'
 
     " Statusline at bottom
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'romgrk/barbar.nvim'
+    Plug 'ryanoasis/vim-devicons' 
     " Plug 'kyazdani42/nvim-web-devicons'
-    " Plug 'romgrk/barbar.nvim'
     " Plug 'adelarsq/neoline.vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    " Plug 'cj/vim-webdevicons'
+    " Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline-themes'
     
 
 call plug#end()
@@ -95,7 +96,7 @@ call plug#end()
 
 " NERD TREE AND ICONS
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 0
+let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['node_modules']
 let NERDTreeStatusline='NERDTree'
 
@@ -114,13 +115,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-l>"
 
 
-" AIRLINE
-let airline_theme="dracula"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
 " Telescope by TEEJ
-nnoremap <leader>p <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fw <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -161,12 +157,15 @@ let g:compe.source.vsnip = v:true
 let g:compe.source.ultisnips = v:true
 let g:user_emmet_leader_key='<Tab>'
 
-
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+
+" Goyo 
+nnoremap <leader>kz :Goyo <CR>
 
 " INTEGRATED TERMINAL
 " open new split panes to right and below
@@ -197,8 +196,29 @@ nnoremap <A-l> <C-w>l
 map <F9> : make %:r <CR>
 
 " Buffer binds
-map  <leader>n :bnext<CR>
-map  <leader>p :bprevious<CR>
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+" Close buffer
+nnoremap <silent>    <A-c> :BufferClose<CR>
+" Magic buffer-picking mode
+nnoremap <silent> <C-f>    :BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+
 
 " Disabling arrow key
 noremap <Up> <Nop>
@@ -207,6 +227,9 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " Disabling hjkl
+
+"goyo
+let g:goyo_linenr=1
 
 " Auto formatting use neoformat
 augroup fmt
@@ -227,13 +250,13 @@ nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
 
 " Important for colorschemes
-nmap <C-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" nmap <C-P> :call <SID>SynStack()<CR>
+" function! <SID>SynStack()
+"   if !exists("*synstack")
+"     return
+"   endif
+"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunc
 
 " Status line
 " require('lualine').setup()
