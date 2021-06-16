@@ -34,7 +34,7 @@ end
 gl.section.left[1] = {
     StartSpace = {
         provider = spacing,
-        highlight = {colors.orange, colors.orange}
+        highlight = {colors.bg, colors.bg}
     }
 }
 
@@ -52,16 +52,16 @@ gl.section.left[2] = {
             }
             return alias[vim.fn.mode()]
         end,
-        separator = '   ',
+        separator = '  ',
         separator_highlight = {
-            colors.orange, function()
+            colors.bg, function()
                 if not buffer_not_empty() then
-                    return colors.orange
+                    return 
                 end
                 return 
             end
         },
-        highlight = {colors.darkblue, colors.orange, 'bold'}
+        highlight = {colors.orange, colors.bg, 'italic'}
     }
 }
 
@@ -81,7 +81,50 @@ gl.section.left[4] = {
     FileName = {
         provider = {'FileName'},
         condition = buffer_not_empty,
-        highlight = { colors.red }
+        highlight = { colors.green }
+    }
+}
+
+gl.section.left[5] = {
+    GitIcon = {
+        provider = function() return '    ' end,
+        condition = buffer_not_empty,
+        highlight = {colors.orange}
+    }
+}
+
+gl.section.left[6] = {
+    GitBranch = {
+        provider = 'GitBranch',
+        condition = buffer_not_empty,
+        highlight = {colors.orange}
+    }
+}
+
+gl.section.left[7] = {
+    DiffAdd = {
+        provider = 'DiffAdd',
+        condition = checkwidth,
+        icon = '  ',
+        highlight = {colors.orange}
+    }
+}
+
+gl.section.left[8] = {
+    DiffModified = {
+        provider = 'DiffModified',
+        condition = checkwidth,
+        icon = '  ',
+        highlight = {colors.orange}
+    }
+}
+
+gl.section.left[9] = {
+    DiffRemove = {
+        provider = 'DiffRemove',
+        condition = checkwidth,
+        icon = '  ',
+        highlight = {colors.orange}
     }
 }
 

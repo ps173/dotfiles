@@ -3,23 +3,20 @@ call plug#begin("~/.nvim/plugged")
 
     "Themes
     Plug 'morhetz/gruvbox'
-    Plug 'ayu-theme/ayu-vim' 
     Plug 'tomasiser/vim-code-dark'
-    Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'bluz71/vim-moonfly-colors'
-    Plug 'arcticicestudio/nord-vim'
     Plug 'joshdick/onedark.vim'
     Plug 'wojciechkepka/vim-github-dark'
     Plug 'sainnhe/sonokai'
-    Plug 'sainnhe/gruvbox-material'
     Plug 'cocopon/iceberg.vim'
+    Plug 'ghifarit53/tokyonight-vim'
 
     "Miscellaneous
     Plug 'jiangmiao/auto-pairs'
-    Plug 'Yggdroot/indentLine'
-    Plug 'mhinz/vim-startify'
+
+    " Plug 'mhinz/vim-startify'
     Plug 'akinsho/nvim-toggleterm.lua'
     Plug 'junegunn/goyo.vim'
+    Plug 'glepnir/dashboard-nvim'
     
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
@@ -47,22 +44,18 @@ call plug#begin("~/.nvim/plugged")
     Plug 'hrsh7th/nvim-compe'
     Plug 'sbdchd/neoformat'
     Plug 'mattn/emmet-vim'
-    Plug 'numToStr/Navigator.nvim'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-fugitive'
 
     " Statusline at bottom
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'romgrk/barbar.nvim'
     Plug 'ryanoasis/vim-devicons' 
     Plug 'glepnir/galaxyline.nvim'
-    " Plug 'kyazdani42/nvim-web-devicons'
-    " Plug 'adelarsq/neoline.vim'
-    " Plug 'vim-airline/vim-airline'
-    " Plug 'vim-airline/vim-airline-themes'
     
 
 call plug#end()
 
-let g:startify_session_dir = '~/.config/nvim/session'
 
 nnoremap <leader>kz :Goyo <CR>
 
@@ -134,11 +127,11 @@ autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
 " Important for colorschemes
-" nmap <C-P> :call <SID>SynStack()<CR>
-" function! <SID>SynStack()
-"   if !exists("*synstack")
-"     return
-"   endif
-"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-" endfunc
+nmap <F5> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 

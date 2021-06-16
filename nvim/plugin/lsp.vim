@@ -1,5 +1,5 @@
 "ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-y>"
 " list all snippets for current filetype
 let g:UltiSnipsListSnippets="<c-l>"
 
@@ -29,7 +29,7 @@ let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 let g:compe.source.ultisnips = v:true
-let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_leader_key='<c-y>'
 
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
