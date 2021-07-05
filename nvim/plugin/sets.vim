@@ -5,7 +5,7 @@ set shiftwidth=4
 set expandtab
 set encoding=utf8
 set wildmenu
-set mouse=a
+" set mouse=a
 set smartindent
 set nu relativenumber
 set nowrap
@@ -22,8 +22,16 @@ set background=dark
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*node_modules/     " MacOSX/Linux
 set t_Co=256
 set hidden
+set guicursor=
 
-let g:mapleader=' '
+" I hate bottom lines
+set noruler
+set laststatus=0
+set noshowcmd
+" This is optional 
+" set noshowmode
+
+let mapleader=' '
 let g:startify_session_dir = '~/.config/nvim/session'
 
 if (has("termguicolors"))

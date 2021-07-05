@@ -1,0 +1,128 @@
+set $mod Mod4
+
+font pango:Fira Code 10
+
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+exec nitrogen --restore
+exec compton
+exec nm-applet
+
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+floating_modifier $mod
+
+bindsym $mod+Return exec kitty
+
+bindsym $mod+Shift+c kill
+
+bindsym $mod+r exec rofi -show run 
+bindsym $mod+Tab exec rofi -show window 
+bindsym Mod1+Tab exec rofi -show window 
+
+# for_window [class="^.*"] border pixel 2
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
+bindsym $mod+o split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+set $ws1 "Web"
+set $ws2 "Code"
+set $ws3 "Term"
+set $ws4 "Media"
+set $ws5 "Misc"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+# Scratch Pad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+bindsym $mod+Ctrl+r reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exit
+
+client.focused          #C08187 #5A5959 #dcdcdc #709080 #709080
+client.focused_inactive #3f3f3f #5A5959 #dcdcdc #5A5959 #3f3f3f
+client.unfocused        #3f3f3f #5A5959 #dcdcdc #5A5959 #3f3f3f
+client.urgent           #3f3f3f #5A5959 #dcdcdc #5A5959 #3f3f3f
+client.placeholder      #3f3f3f #5A5959 #dcdcdc #5A5959 #3f3f3f
+client.background       #3f3f3f
+
+
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+x mode "resize"
+
+
+bar {
+    colors {
+    background #3f3f3f
+    statusline #d8deef
+    separator #709080
+
+    focused_workspace   #3f3f3f #E6E77A #3f3f3f
+    active_workspace    #3f3f3f #3f3f3f #dcdcdc
+    inactive_workspace  #3f3f3f #3f3f3f #dcdcdc
+    urgent_workspace    #3f3f3f #ebcb8b #3f3f3f
+    }
+
+    tray_padding 0
+    status_command i3status
+    position top
+    output primary
+    # tray_output none
+    font pango:Fira Code 10
+}   

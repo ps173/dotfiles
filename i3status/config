@@ -1,0 +1,31 @@
+# # i3status configuration file.
+# # see "man i3status" for documentation.
+
+# # It is important that this file is edited as UTF-8.
+# # The following line should contain a sharp s:
+# # ß
+# # If the above line is not correctly displayed, fix your editor first!
+
+general {
+        output_format = "i3bar"
+        colors = false
+        markup = pango
+        interval = 1
+}
+
+order += "tztime local"
+order += "volume master"
+
+volume master {
+        format = "<span background='#dca3a3' color='#3f3f3f'> Vol : </span><span > %volume </span>"
+        format_muted = "<span background='#dca3a3' color='#3f3f3f'>  </span><span > Muted </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+tztime local {
+		format = "<span background='#82AFB8' color='#3f3f3f' > Time : </span><span > %time </span>"
+		format_time = "%a %-d %b %H:%M"
+}
+
