@@ -4,9 +4,9 @@ call plug#begin("~/.nvim/plugged")
     "Themes
     Plug 'morhetz/gruvbox'
     Plug 'joshdick/onedark.vim'
-    Plug 'w0ng/vim-hybrid'
     Plug 'kristijanhusak/vim-hybrid-material'
-    Plug 'doums/darcula'
+    Plug 'drewtempelmeyer/palenight.vim'
+    Plug 'bluz71/vim-nightfly-guicolors'
 
     "Miscellaneous
     Plug 'jiangmiao/auto-pairs'
@@ -49,9 +49,7 @@ call plug#begin("~/.nvim/plugged")
     Plug 'sbdchd/neoformat'
 
     " Statusline at bottom
-    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'romgrk/barbar.nvim'
-    Plug 'ryanoasis/vim-devicons' 
 
 call plug#end()
 
@@ -76,6 +74,9 @@ vmap > >gv
 
 map <F9> : make %:r <CR>
 
+let bufferline = get(g:, 'bufferline', {})
+
+let bufferline.icons = v:false
 nnoremap <silent>    <S-Tab> :BufferPrevious<CR>
 nnoremap <silent>    <Tab> :BufferNext<CR>
 nnoremap <silent>    <A->> :BufferMovePrevious<CR>
@@ -106,7 +107,7 @@ nnoremap <silent> <C-/> :Commentary <CR>
 nnoremap <silent> <leader>/ :Commentary <CR>
 
 "goyo
-let g:goyo_linenr=1
+let g:goyo_linenr=0
 
 " Auto formatting use neoformat
 let g:prettier#autoformat = 0
@@ -121,6 +122,8 @@ map <Esc><C-c> <CR>
 
 " alternater way to save
 nnoremap <silent> <C-s> :w<CR>
+
+" resizing
 nnoremap <silent> <C-Down>    :resize -2<CR>
 nnoremap <silent> <C-Up>  :resize +2<CR>
 nnoremap <silent> <C-Left>  :vertical resize -2<CR>
@@ -149,4 +152,3 @@ let g:rainbow_active = 1
 
 " Requiring telescope settings
 lua require("telescope-pref")
-

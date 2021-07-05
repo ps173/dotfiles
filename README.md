@@ -1,6 +1,6 @@
 # DOT FILES
 
-![Rice](./screenshots/nord-herbluftwm.png)
+![Rice](./screenshots/nord-herbluftwm.png Herbs)
 
 #### Dependencies : Kitty(this is just fast oh shhiii---), polybar, tint2, rofi, tmux, cmus
 
@@ -14,30 +14,10 @@ So Use this Instead
 
 ## Setting up everything
 
-### FOR SETTING Openbox
-
-1. paste files in .config
-2. Download openbox themes from [here](https://github.com/addy-dclxvi/openbox-theme-collections)
-3. install tint2
-4. paste tint2 folder in .config
-
-### Awesome config
-
-It was made from copy cat config. looks okay.
-To make it work:
-
-            cd dotfiles
-            cp ./awesome ~/.config/
-
-### FOR SETTING herbstluftwm (Currently My main driver)
-
-1. paste files in .config
-2. Download polybar
-3. Paste polybar config
-
 ### FOR SETTING tmux (the best app that gies beautifully with neovim)
 
 1. paste files in XDG_HOME or homedir
+2. Don't forget to get tmux themepack
 
 ### init.vim
 
