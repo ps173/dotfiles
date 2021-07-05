@@ -1,6 +1,9 @@
 # DOT FILES
 
-![Rice](./screenshots/nord-herbluftwm.png Herbs)
+<figure>
+<img src="./screenshots/nord-herbluftwm.png" alt="Herbs Rice" style="width:100%">
+<figcaption align = "center"><b>Herbsluftwm</b></figcaption>
+</figure>
 
 #### Dependencies : Kitty(this is just fast oh shhiii---), polybar, tint2, rofi, tmux, cmus
 
