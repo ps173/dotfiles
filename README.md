@@ -2,8 +2,24 @@
 
 <figure>
 <img src="./screenshots/nord-herbluftwm.png" alt="Herbs Rice" style="width:100%">
-<figcaption align = "center"><b>Herbsluftwm</b></figcaption>
+<p align = "center"> Herbsluftwm </p>
 </figure>
+
+---
+
+<figure>
+<img src="./screenshots/openbox.png" alt="Openbox Rice" style="width:100%">
+<p align = "center"> Openbox </p>
+</figure>
+
+---
+
+<figure>
+<img src="./screenshots/i3-zenburnzzzzz.png" alt="I3gaps Rice" style="width:100%">
+<p align = "center"> i3-gaps </p>
+</figure>
+
+---
 
 #### Dependencies : Kitty(this is just fast oh shhiii---), polybar, tint2, rofi, tmux, cmus
 
