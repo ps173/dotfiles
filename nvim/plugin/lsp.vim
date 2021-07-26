@@ -41,6 +41,7 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -69,10 +70,22 @@ local on_attach = function(client, bufnr)
 
 end
 
-local servers = { "pyright", "tsserver" }
+local servers = { "pyright", "tsserver"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+nvim_lsp.gopls.setup {
+  cmd = {"gopls", "serve"},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }

@@ -1,33 +1,39 @@
 set noerrorbells
-set tabstop=4 
-set softtabstop=4
-set shiftwidth=4
+set tabstop=1
+set softtabstop=1
+set shiftwidth=1
 set expandtab
-set encoding=utf8
+" set encoding=utf7
 set wildmenu
-" set mouse=a
+set mouse=a
 set smartindent
 set nu relativenumber
 set nowrap
-set nohlsearch
+set hlsearch
 set smartcase 
 set noswapfile
 set nobackup
 set undodir=~/.nvim/undodir
 set undofile
-set cursorline
+" set cursorline
+set signcolumn=yes
 set incsearch
+set scrolloff=8
 set formatoptions-=cro
 set background=dark
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*node_modules/     " MacOSX/Linux
 set t_Co=256
 set hidden
-set guicursor=
+" set guicursor=
+set colorcolumn=80
+set icm=split
+set rdt=5000
+  
 
 " I hate bottom lines
-set noruler
-set laststatus=0
-set noshowcmd
+" set noruler
+" set laststatus=0
+" set noshowcmd
 " This is optional 
 " set noshowmode
 

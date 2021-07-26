@@ -1,19 +1,16 @@
-" Plugins
+"Plugins
 call plug#begin("~/.nvim/plugged")
 
-    "Themes
-    Plug 'morhetz/gruvbox'
-    Plug 'joshdick/onedark.vim'
-    Plug 'kristijanhusak/vim-hybrid-material'
-    Plug 'drewtempelmeyer/palenight.vim'
-    Plug 'bluz71/vim-nightfly-guicolors'
+    "Themes that I like 
+    Plug 'sainnhe/gruvbox-material'
+    Plug 'navarasu/onedark.nvim'
 
     "Miscellaneous
+    Plug 'glepnir/dashboard-nvim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'frazrepo/vim-rainbow'
     Plug 'RRethy/vim-illuminate'
     Plug 'akinsho/nvim-toggleterm.lua'
-    Plug 'tpope/vim-fugitive'
     Plug 'junegunn/vim-plug'
     Plug 'junegunn/goyo.vim'
     
@@ -38,6 +35,7 @@ call plug#begin("~/.nvim/plugged")
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
     Plug 'hrsh7th/nvim-compe'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
     " Snippets Support
     Plug 'SirVer/ultisnips'
@@ -50,6 +48,12 @@ call plug#begin("~/.nvim/plugged")
 
     " Statusline at bottom
     Plug 'romgrk/barbar.nvim'
+    Plug 'hoob3rt/lualine.nvim'
+    Plug 'kyazdani42/nvim-web-devicons' " lua
+
+    " Git Stuff
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -66,7 +70,7 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-" WOOHHOOOOOOOOOOOO
+" WOOHHOOOOOOOOOOO
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 vmap < <gv
@@ -94,7 +98,8 @@ nnoremap <silent>    <C-q> :BufferClose<CR>
 nnoremap <silent> <C-f>    :BufferPick<CR>
 nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
 nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
-
+nnoremap <silent> <Space>S :SessionSave<CR>
+nnoremap <leader><leader>g :GitGutterToggle<CR>
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -110,11 +115,9 @@ nnoremap <silent> <leader>/ :Commentary <CR>
 let g:goyo_linenr=0
 
 " Auto formatting use neoformat
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 augroup fmt
   autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+  autocmd BufWritePre * Neoformat
 augroup END
 
 " mapping escape to ctrl c
@@ -149,6 +152,8 @@ function! <SID>SynStack()
 endfunc
 
 let g:rainbow_active = 1
+let g:dashboard_default_executive ='telescope'
 
 " Requiring telescope settings
 lua require("telescope-pref")
+lua require("airline")

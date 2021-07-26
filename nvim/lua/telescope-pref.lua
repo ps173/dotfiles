@@ -3,16 +3,17 @@ require('telescope').setup{
     prompt_prefix = "$ ",
     selection_caret = "> ",
     initial_mode = "insert",
-    file_ignore_patterns = {},
+    file_ignore_patterns = {'node_modules/**'},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
-    winblend = 0,
-    width = 0.55,
-    preview_cutoff = 1,
-    results_height = 1,
-    results_width = 2,
+    path_display = {
+        "shorten"
+    },
+    winblend = 20,
     border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-
+    layout_config = {
+        preview_width = 0.6,
+        width =0.9 ,
+        preview_cutoff = 0.4,
+    }
   }
 }
