@@ -7,7 +7,7 @@ set expandtab
 set wildmenu
 set mouse=a
 set smartindent
-set nu relativenumber
+set nu 
 set nowrap
 set hlsearch
 set smartcase 

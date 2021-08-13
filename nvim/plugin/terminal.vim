@@ -5,4 +5,3 @@ autocmd TermEnter term://*toggleterm#*
 
 nnoremap <silent><c-t> :<c-u>exe v:count1 . "ToggleTerm"<CR>
 inoremap <silent><c-t> <Esc>:<c-u>exe v:count1 . "ToggleTerm"<CR>
-

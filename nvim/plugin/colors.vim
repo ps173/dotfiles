@@ -61,4 +61,4 @@ let g:gruvbox_material_background = 'soft'
 map <Space>ew :call Transparency()<CR>
 map <Space>bb :call Contrastify()<CR>
 map <Space>ww :call WarmDark()<CR>
-colorscheme onedark
+colorscheme gruvbox-material

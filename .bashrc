@@ -22,7 +22,6 @@ export NVM_DIR="$HOME/.config/nvm"
 #fortune | lolcat
 
 # ALiases
-alias minecraft="cd Games && bash ~/Games/minecraft.sh"
 alias news="news -3"
 alias v="vim"
 alias n="notes.sh"

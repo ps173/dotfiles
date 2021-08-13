@@ -4,6 +4,7 @@ call plug#begin("~/.nvim/plugged")
     "Themes that I like 
     Plug 'sainnhe/gruvbox-material'
     Plug 'navarasu/onedark.nvim'
+    " Plug 'ntk148v/vim-horizon'
 
     "Miscellaneous
     Plug 'glepnir/dashboard-nvim'
@@ -17,7 +18,7 @@ call plug#begin("~/.nvim/plugged")
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/colorizer'
-    Plug 'cocopon/colorswatch.vim'
+    " Plug 'cocopon/colorswatch.vim'
 
     " File explorer
     Plug 'scrooloose/nerdtree'
@@ -35,12 +36,14 @@ call plug#begin("~/.nvim/plugged")
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
     Plug 'hrsh7th/nvim-compe'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    Plug 'glepnir/lspsaga.nvim'
+
+    " Go-development
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
     " Snippets Support
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'mlaursen/vim-react-snippets'
+    Plug 'hrsh7th/vim-vsnip'
     
     " Formatting
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -49,7 +52,7 @@ call plug#begin("~/.nvim/plugged")
     " Statusline at bottom
     Plug 'romgrk/barbar.nvim'
     Plug 'hoob3rt/lualine.nvim'
-    Plug 'kyazdani42/nvim-web-devicons' " lua
+    " Plug 'kyazdani42/nvim-web-devicons' 
 
     " Git Stuff
     Plug 'airblade/vim-gitgutter'
@@ -157,3 +160,10 @@ let g:dashboard_default_executive ='telescope'
 " Requiring telescope settings
 lua require("telescope-pref")
 lua require("airline")
+lua require("treesitter")
+lua require("compe-config")
+lua require("lspsaga-conf")
+lua require("languages-lsp/pythonls")
+lua require("languages-lsp/jsls")
+lua require("languages-lsp/gols")
+lua require("languages-lsp/luals")
