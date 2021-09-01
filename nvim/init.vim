@@ -4,7 +4,8 @@ call plug#begin("~/.nvim/plugged")
     "Themes that I like 
     Plug 'sainnhe/gruvbox-material'
     Plug 'navarasu/onedark.nvim'
-    " Plug 'ntk148v/vim-horizon'
+    Plug 'bluz71/vim-moonfly-colors'
+    Plug 'RRethy/nvim-base16'
 
     "Miscellaneous
     Plug 'glepnir/dashboard-nvim'
@@ -21,7 +22,8 @@ call plug#begin("~/.nvim/plugged")
     " Plug 'cocopon/colorswatch.vim'
 
     " File explorer
-    Plug 'scrooloose/nerdtree'
+    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    Plug 'preservim/nerdtree'
 
     " Comments
     Plug 'tpope/vim-commentary'
@@ -52,7 +54,7 @@ call plug#begin("~/.nvim/plugged")
     " Statusline at bottom
     Plug 'romgrk/barbar.nvim'
     Plug 'hoob3rt/lualine.nvim'
-    " Plug 'kyazdani42/nvim-web-devicons' 
+    Plug 'kyazdani42/nvim-web-devicons' 
 
     " Git Stuff
     Plug 'airblade/vim-gitgutter'
@@ -83,7 +85,7 @@ map <F9> : make %:r <CR>
 
 let bufferline = get(g:, 'bufferline', {})
 
-let bufferline.icons = v:false
+let bufferline.icons = v:true
 nnoremap <silent>    <S-Tab> :BufferPrevious<CR>
 nnoremap <silent>    <Tab> :BufferNext<CR>
 nnoremap <silent>    <A->> :BufferMovePrevious<CR>
@@ -135,6 +137,9 @@ nnoremap <silent> <C-Up>  :resize +2<CR>
 nnoremap <silent> <C-Left>  :vertical resize -2<CR>
 nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
+" Chad tree for true chads
+nnoremap <leader>e <cmd>CHADopen<cr>
+nnoremap <leader>b :NERDTreeToggle<cr>
 
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -163,7 +168,23 @@ lua require("airline")
 lua require("treesitter")
 lua require("compe-config")
 lua require("lspsaga-conf")
+lua require("lspconf")
 lua require("languages-lsp/pythonls")
 lua require("languages-lsp/jsls")
 lua require("languages-lsp/gols")
 lua require("languages-lsp/luals")
+
+set background=dark
+colorscheme base16-tomorrow-night
+
+"" not today
+function Sundail()
+ let hour = strftime("%H") 
+ if 6 <= hour && hour < 18 
+  set background=light 
+  colorscheme one
+ else 
+  set background=dark 
+  colorscheme material
+ endif 
+endfunc

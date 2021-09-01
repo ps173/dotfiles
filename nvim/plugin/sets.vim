@@ -15,12 +15,11 @@ set noswapfile
 set nobackup
 set undodir=~/.nvim/undodir
 set undofile
-" set cursorline
+set cursorline
 set signcolumn=yes
 set incsearch
 set scrolloff=8
 set formatoptions-=cro
-set background=dark
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*node_modules/     " MacOSX/Linux
 set t_Co=256
 set hidden

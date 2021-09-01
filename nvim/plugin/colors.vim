@@ -33,11 +33,7 @@ endfunction
 
 function WarmDark()
 
-    colorscheme onedark
-    hi Normal guibg=#202020 
-    hi CursorLine guibg=#202020 
-    hi SignColumn guibg=#202020
-    hi MsgArea guibg=#202020
+    colorscheme bubblegum
     hi LspDiagnosticsDefaultError guifg=#Ec2112
     hi LspDiagnosticsDefaultHint guifg=#ffb112
     hi LspDiagnosticsDefaultInformation guifg=#Ec2112
@@ -46,19 +42,7 @@ function WarmDark()
 
 endfunction
 
-" augroup ContrastIt
-"     autocmd!
-"     autocmd ColorScheme * call Contrastify()
-" augroup END
-
-set background="dark"
-
-" let g:gruvbox_material_transparent_background=1
-let g:gruvbox_material_background = 'soft'
-
-
 " colorscheme gruvbox
 map <Space>ew :call Transparency()<CR>
 map <Space>bb :call Contrastify()<CR>
 map <Space>ww :call WarmDark()<CR>
-colorscheme gruvbox-material
