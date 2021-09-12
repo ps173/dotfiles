@@ -1,7 +1,4 @@
-export ZSH="/home/psx/.oh-my-zsh"
-plugins=(git nvm)
-
-source $ZSH/oh-my-zsh.sh
+PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -37,11 +34,11 @@ alias t="tmux"
 alias gc="git commit"
 alias gcm="git commit -m 'Commited Changes'"
 alias gaa="git add ."
+alias gp="git push"
 alias proj="~/proj.sh"
-alias li="exa --icons"
-alias ls="exa --icons"
-alias la="exa --icons -la"
-alias ni="neofetch --backend kitty --source auto"
+alias lzy="lazygit"
+alias boon="~/boon"
+alias cat="bat"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -49,7 +46,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 autoload bashcompinit
 bashcompinit
 source /usr/share/bash-completion/completions/pacstall
-TERM=xterm-256color
 
 # stty -ixon
 xset r rate 250 50
@@ -59,4 +55,7 @@ source $HOME/.cargo/env
 export DENO_INSTALL="/home/psx/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+export PATH=$HOME/.vscvm:$PATH
+
 alias luamake=/home/psx/lua-language-server/3rd/luamake/luamake
+
