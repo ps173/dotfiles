@@ -5,11 +5,10 @@ This has my nvim, tmux and i3 configurations.
 # For a new setup 
 
 - install nvim (0.5+)
-- install oh-my-zsh
-- install i3
-- install exa
+- install i3-gaps
+- install bat
 - install tmux
-- paste i3 and nvim configs in `$XDG/.config/`  
-- paste `.tmux.themepack`,`.tmux.conf` in homedir  
+- install starship
+- install [fira-code patched by nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 yup that's it
