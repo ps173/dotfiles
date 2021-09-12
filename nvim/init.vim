@@ -3,18 +3,23 @@ call plug#begin("~/.nvim/plugged")
 
     "Themes that I like 
     Plug 'sainnhe/gruvbox-material'
-    Plug 'navarasu/onedark.nvim'
-    Plug 'bluz71/vim-moonfly-colors'
-    Plug 'RRethy/nvim-base16'
+    Plug 'sainnhe/sonokai'
+    Plug 'marko-cerovac/material.nvim'
+    Plug 'srcery-colors/srcery-vim'
+    " Plug 'fenetikm/falcon'
+    Plug 'glepnir/zephyr-nvim'
+    Plug 'projekt0n/github-nvim-theme'
+    Plug 'savq/melange'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
     "Miscellaneous
     Plug 'glepnir/dashboard-nvim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'frazrepo/vim-rainbow'
-    Plug 'RRethy/vim-illuminate'
     Plug 'akinsho/nvim-toggleterm.lua'
     Plug 'junegunn/vim-plug'
     Plug 'junegunn/goyo.vim'
+    Plug 'folke/todo-comments.nvim'
     
     "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
@@ -116,6 +121,10 @@ noremap <Right> <Nop>
 nnoremap <silent> <C-/> :Commentary <CR>
 nnoremap <silent> <leader>/ :Commentary <CR>
 
+" Todo management
+nnoremap <leader><leader>t :TODOToggle<CR>
+
+
 "goyo
 let g:goyo_linenr=0
 
@@ -174,8 +183,6 @@ lua require("languages-lsp/jsls")
 lua require("languages-lsp/gols")
 lua require("languages-lsp/luals")
 
-set background=dark
-colorscheme base16-tomorrow-night
 
 "" not today
 function Sundail()
@@ -188,3 +195,19 @@ function Sundail()
   colorscheme material
  endif 
 endfunc
+
+nnoremap <F6> :call Sundail() <CR>
+
+set background=dark
+let g:sonokai_better_performance = 1
+let g:sonokai_style = 'shusia'
+let g:sonokai_enable_italic = 1
+
+lua << EOF
+  require("todo-comments").setup()
+  require("github-theme").setup({
+  themeStyle = "dimmed",
+  })
+
+EOF
+colorscheme github
