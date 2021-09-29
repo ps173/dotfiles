@@ -1,21 +1,18 @@
 #!/bin/bash
 
-# Getting present date
-fn=$(date +"%m_%d_%Y")
-
 # file name
-_file="./Documents/notes/$fn.txt"
+echo "What is the name of the note ?"
+read TITLE 
+FULL_PATH="$HOME/Documents/personal-notes/$TITLE.md"
 
-if [ -f "$_file" ]; then
-    echo "$_file exists."
-    echo -e "\n">> $_file
-    date +"## Note Made at: %I:%M %p">>  $_file
-    vim $_file
+# Check the file name and path
+if [ -f "$FULL_PATH" ]; then
+    echo "$FULL_PATH exists."
 else
-    date >> $_file
-    echo -e "\n">> $_file
-    date +"## Note Made at: %I:%M %p">>  $_file
-    vim $_file
+    echo -e "# $_file \n">> $FULL_PATH
+    date >> $FULL_PATH
+    echo -e "\n">> $FULL_PATH
 fi
 
-
+# Open in your friendly editor
+$EDITOR $FULL_PATH
