@@ -3,7 +3,7 @@
 # file name
 echo "What is the name of the note ?"
 read TITLE 
-FULL_PATH="$HOME/Documents/personal-notes/$TITLE.md"
+FULL_PATH="$NOTE_DIR/$TITLE.md"
 
 # Check the file name and path
 if [ -f "$FULL_PATH" ]; then
