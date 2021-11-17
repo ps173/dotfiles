@@ -9,6 +9,10 @@ function! Transparency()
     hi SignColumn ctermbg=NONE guibg=NONE
     hi MsgArea ctermbg=NONE guibg=NONE
     hi NonText ctermbg=NONE guibg=NONE
+    hi LspDiagnosticsDefaultError guifg=#Ec2112
+    hi LspDiagnosticsDefaultHint guifg=#ffb112
+    hi LspDiagnosticsDefaultInformation guifg=#Ec2112
+    hi LspDiagnosticsDefaultWarning guifg=#ffb112 
 " Just for zenburn
     if g:colors_name=="zenburn"
         hi Visual guibg=#5E5E59 ctermbg=444 
@@ -33,7 +37,6 @@ endfunction
 
 function WarmDark()
 
-    colorscheme bubblegum
     hi LspDiagnosticsDefaultError guifg=#Ec2112
     hi LspDiagnosticsDefaultHint guifg=#ffb112
     hi LspDiagnosticsDefaultInformation guifg=#Ec2112
@@ -42,7 +45,35 @@ function WarmDark()
 
 endfunction
 
+lua << EOF
+require('material').setup({
+borders = true,
+contrast=true,
+popup_menu = "colorful",
+
+contrast_windows = { -- Specify which windows get the contrasted (darker) background
+		"terminal", -- Darker terminal background
+},
+
+})
+EOF
+
+set background=dark
+set termguicolors
+let g:sonokai_better_performance = 1
+let g:vscode_style ="dark"
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:material_style = 'darker'
+colorscheme sonokai
+
+" let g:neosolarized_termtrans=1
+" let g:github_transparent=v:true
+" colorscheme bubblegum
+" call Transparency()
+
 " colorscheme gruvbox
+nnoremap <leader>mm :lua require('material.functions').toggle_style()<CR>
 map <Space>ew :call Transparency()<CR>
 map <Space>bb :call Contrastify()<CR>
 map <Space>ww :call WarmDark()<CR>

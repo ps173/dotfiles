@@ -7,7 +7,7 @@ M.project_files = function()
      previewer = false;
      layout_config = {
          width = 0.7;
-         height = 0.5;
+         height = 0.8;
      }
     } -- define here if you want to define something
   local ok = pcall(require'telescope.builtin'.git_files, opts)

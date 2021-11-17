@@ -2,15 +2,14 @@
 call plug#begin("~/.nvim/plugged")
 
     "Themes that I like 
-    Plug 'sainnhe/gruvbox-material'
     Plug 'sainnhe/sonokai'
-    Plug 'marko-cerovac/material.nvim'
-    Plug 'srcery-colors/srcery-vim'
-    " Plug 'fenetikm/falcon'
-    Plug 'glepnir/zephyr-nvim'
+    Plug 'Mofiqul/vscode.nvim'
+    Plug 'tanvirtin/monokai.nvim'
     Plug 'projekt0n/github-nvim-theme'
-    Plug 'savq/melange'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'Mangeshrex/uwu.vim'
+    Plug 'navarasu/onedark.nvim'
+    Plug 'marko-cerovac/material.nvim'
 
     "Miscellaneous
     Plug 'glepnir/dashboard-nvim'
@@ -27,7 +26,6 @@ call plug#begin("~/.nvim/plugged")
     " Plug 'cocopon/colorswatch.vim'
 
     " File explorer
-    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'preservim/nerdtree'
 
     " Comments
@@ -42,7 +40,10 @@ call plug#begin("~/.nvim/plugged")
     Plug 'sheerun/vim-polyglot'
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
-    Plug 'hrsh7th/nvim-compe'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
     Plug 'glepnir/lspsaga.nvim'
 
@@ -51,6 +52,12 @@ call plug#begin("~/.nvim/plugged")
 
     " Snippets Support
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'honza/vim-snippets'
+    Plug 'epilande/vim-react-snippets'
+
+    " emmet
+    Plug 'mattn/emmet-vim'
     
     " Formatting
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -58,8 +65,13 @@ call plug#begin("~/.nvim/plugged")
 
     " Statusline at bottom
     Plug 'romgrk/barbar.nvim'
-    Plug 'hoob3rt/lualine.nvim'
+    " Plug 'ap/vim-buftabline'
     Plug 'kyazdani42/nvim-web-devicons' 
+
+    " Markdown support
+    " Plug 'ellisonleao/glow.nvim'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+
 
     " Git Stuff
     Plug 'airblade/vim-gitgutter'
@@ -91,23 +103,9 @@ map <F9> : make %:r <CR>
 let bufferline = get(g:, 'bufferline', {})
 
 let bufferline.icons = v:true
-nnoremap <silent>    <S-Tab> :BufferPrevious<CR>
-nnoremap <silent>    <Tab> :BufferNext<CR>
-nnoremap <silent>    <A->> :BufferMovePrevious<CR>
-nnoremap <silent>    <A-<> :BufferMoveNext<CR>
-nnoremap <silent>    <A-1> :BufferGoto 1<CR>
-nnoremap <silent>    <A-2> :BufferGoto 2<CR>
-nnoremap <silent>    <A-3> :BufferGoto 3<CR>
-nnoremap <silent>    <A-4> :BufferGoto 4<CR>
-nnoremap <silent>    <A-5> :BufferGoto 5<CR>
-nnoremap <silent>    <A-6> :BufferGoto 6<CR>
-nnoremap <silent>    <A-7> :BufferGoto 7<CR>
-nnoremap <silent>    <A-8> :BufferGoto 8<CR>
-nnoremap <silent>    <A-9> :BufferLast<CR>
-nnoremap <silent>    <C-q> :BufferClose<CR>
-nnoremap <silent> <C-f>    :BufferPick<CR>
-nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
-nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+nnoremap <silent>    <S-Tab> :bp<CR>
+nnoremap <silent>    <Tab> :bn<CR>
+nnoremap <silent>    <C-q> :bdelete <CR>
 nnoremap <silent> <Space>S :SessionSave<CR>
 nnoremap <leader><leader>g :GitGutterToggle<CR>
 
@@ -128,14 +126,8 @@ nnoremap <leader><leader>t :TODOToggle<CR>
 "goyo
 let g:goyo_linenr=0
 
-" Auto formatting use neoformat
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
-
 " mapping escape to ctrl c
-map <Esc><C-c> <CR>
+" map <Esc><C-c> <CR>
 
 " alternater way to save
 nnoremap <silent> <C-s> :w<CR>
@@ -146,18 +138,27 @@ nnoremap <silent> <C-Up>  :resize +2<CR>
 nnoremap <silent> <C-Left>  :vertical resize -2<CR>
 nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
-" Chad tree for true chads
-nnoremap <leader>e <cmd>CHADopen<cr>
-nnoremap <leader>b :NERDTreeToggle<cr>
+" Trees and File Explorers
+nnoremap <C-n> :NERDTreeToggle<cr>
+nnoremap <leader>n :Lex! <cr>
 
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
 
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+" Auto formatting use neoformat
+augroup NeoformatAutoFormat
+    autocmd!
+    autocmd FileType javascript setlocal formatprg=prettier\
+                                             \--print-width\ 80\
+                                             \--trailing-comma\ es6
+    autocmd BufWritePre * Neoformat
+augroup END
+
+let g:neoformat_try_formatprg = 1
+" nnoremap <leader>ap :Neoformat <CR>
+
 
 " Important for colorschemes
 nmap <F5> :call <SID>SynStack()<CR>
@@ -173,41 +174,11 @@ let g:dashboard_default_executive ='telescope'
 
 " Requiring telescope settings
 lua require("telescope-pref")
-lua require("airline")
+" lua require("airline")
 lua require("treesitter")
-lua require("compe-config")
-lua require("lspsaga-conf")
+lua require("cmp-config")
 lua require("lspconf")
-lua require("languages-lsp/pythonls")
-lua require("languages-lsp/jsls")
-lua require("languages-lsp/gols")
-lua require("languages-lsp/luals")
-
-
-"" not today
-function Sundail()
- let hour = strftime("%H") 
- if 6 <= hour && hour < 18 
-  set background=light 
-  colorscheme one
- else 
-  set background=dark 
-  colorscheme material
- endif 
-endfunc
-
-nnoremap <F6> :call Sundail() <CR>
-
-set background=dark
-let g:sonokai_better_performance = 1
-let g:sonokai_style = 'shusia'
-let g:sonokai_enable_italic = 1
 
 lua << EOF
   require("todo-comments").setup()
-  require("github-theme").setup({
-  themeStyle = "dimmed",
-  })
-
 EOF
-colorscheme github

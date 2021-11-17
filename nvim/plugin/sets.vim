@@ -3,7 +3,6 @@ set tabstop=1
 set softtabstop=1
 set shiftwidth=1
 set expandtab
-" set encoding=utf7
 set wildmenu
 set mouse=a
 set smartindent
@@ -27,7 +26,7 @@ set hidden
 set colorcolumn=80
 set icm=split
 set rdt=5000
-  
+set ruler 
 
 " I hate bottom lines
 " set noruler

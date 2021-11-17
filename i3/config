@@ -3,7 +3,9 @@ set $mod Mod4
 font pango:Fira Code 10
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
+# exec_always --no-startup-id "$HOME/.config/polybar/launch.sh --blocks"
+exec_always --no-startup-id xfce4-panel 
+ 
 exec nitrogen --restore
 exec compton
 exec nm-applet
@@ -26,8 +28,8 @@ bindsym $mod+Tab exec rofi -show window
 bindsym Mod1+Tab exec rofi -show window 
 
 for_window [class="^.*"] border pixel 2
-gaps outer 5
-gaps inner 5
+# gaps outer 2
+# gaps inner 2
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -55,17 +57,23 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
-set $ws1 "Web"
-set $ws2 "Code"
-set $ws3 "Term"
-set $ws4 "Media"
-set $ws5 "Misc"
+set $ws1 "web"
+set $ws2 "code"
+set $ws3 "term"
+set $ws4 "media"
+set $ws5 "misc"
+set $ws6 "social"
+set $ws7 "task"
+set $ws8 "bg"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
 bindsym $mod+Right workspace next
 bindsym $mod+Left workspace prev
 
@@ -74,6 +82,9 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws5
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
 
 # Scratch Pad
 bindsym $mod+Shift+minus move scratchpad
@@ -83,7 +94,10 @@ bindsym $mod+Ctrl+r reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exit
 
-client.focused          #212121 #c792ea #c792ea #c792ea #c792ea
+# I3lock
+bindsym $mod+Ctrl+l exec betterlockscreen -l blur 
+
+client.focused          #212121 #343232 #40C0A1 #414443 #212121
 client.focused_inactive #212121 #292929 #eeffff #292929 #212121
 client.unfocused        #212121 #292929 #eeffff #292929 #212121
 client.urgent           #212121 #292929 #eeffff #292929 #212121
@@ -102,31 +116,59 @@ mode "resize" {
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindsym Return mode "default" ; exec notify-send "Finished Resizing" "Resizing Action was stopped";
+        bindsym Escape mode "default" ; exec notify-send "Finished Resizing" "Resizing Action was stopped";
+        bindsym $mod+r mode "default" ; exec notify-send "Finished Resizing" "Resizing Action was stopped";
 }
 
-bindsym $mod+x mode "resize"
+bindsym $mod+x mode "resize" ;exec notify-send "resizing" "currently resizing the windows";
+# bindsym $mod+b exec "polybar-msg cmd toggle"
 
+# bar {
+#     colors {
+#     background  #222125
+#     statusline #222125
 
-bar {
-    colors {
-    background  #212121
-    statusline #B0BEC5
-    separator #ff9800
+#     focused_workspace   #222125 #222125 #EC2E2E
+#     active_workspace    #222125 #222125 #B0BEC5
+#     inactive_workspace  #222125 #222125 #B0BEC5
+#     urgent_workspace    #222125 #f78c6c #222125
+#     }
 
-    focused_workspace   #212121 #212121 #c792ea
-    active_workspace    #212121 #212121 #B0BEC5
-    inactive_workspace  #212121 #212121 #B0BEC5
-    urgent_workspace    #212121 #f78c6c #212121
-    }
+#     tray_padding 0
+#     # status_command i3blocks
+#     status_command i3status
+#     # mode hide
+#     position top
+#     output primary
+#     # tray_output none
+#     font pango: Space Mono 9
+# }
 
-    tray_padding 0
-    # status_command i3blocks
-    status_command i3status
-    position top
-    output primary
-    # # tray_output none
-    font pango:Fira Code 10
-}   
+# # finds out, if available)
+# bar {
+#         # I don't know if FontAwesome has an effect here
+#         font pango:JetBrains Mono, FontAwesome 10
+#         # status_command i3status -c $HOME/oc/Linux/dot/i3status.conf
+#         status_command i3blocks -c $HOME/.config/i3blocks/config
+#         position bottom
+#         separator_symbol " "
+#         # strip_workspace_numbers yes
+#         # tray_output none
+
+#         colors {
+#           background #444444
+#           statusline #FFFFFF
+#           separator  #FFFFFF
+
+#           # border background text
+#           # currently no differentiation between active/inactive
+#           focused_workspace  $highlight_color $highlight_color #FFFFFF
+#           active_workspace   #222222 #222222 #FFFFFF
+#           inactive_workspace #222222 #222222 #FFFFFF
+#           urgent_workspace   #FFFF00 #FFFF00 #000000
+#           binding_mode       #FFFF00 #FFFF00 #000000
+#         }
+
+# }
+

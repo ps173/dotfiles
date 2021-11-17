@@ -1,4 +1,3 @@
-
 -- local function emoji()
 --   return ''
 -- end
@@ -20,7 +19,7 @@
 
 require'lualine'.setup {
   options = {
-    theme = 'onedark',
+    theme = 'powerline',
     component_separators = {'', ''},
     section_separators = {'', ''},
   },
