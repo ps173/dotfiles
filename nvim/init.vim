@@ -7,7 +7,6 @@ call plug#begin("~/.nvim/plugged")
     Plug 'briones-gabriel/darcula-solid.nvim'
     Plug 'rktjmp/lush.nvim'
 
-
     Plug 'glepnir/dashboard-nvim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'frazrepo/vim-rainbow'
@@ -168,3 +167,11 @@ lua << EOF
    }
   }
 EOF
+let g:nvim_tree_gitignore = 1 "0 by default
+let g:nvim_tree_show_icons = {
+    \ 'git': 0,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+
