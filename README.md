@@ -1,11 +1,13 @@
 # DOTFILES
 
-This has my nvim, tmux and i3 configurations. 
+This has my nvim, tmux and i3 configurations.
 
-# For a new setup 
+![image](./docs/minmal-vim-setup.png)
+
+# For a new setup
 
 - install nvim (0.5+)
-- install i3-gaps
+- install i3
 - install bat
 - install tmux
 - install starship
