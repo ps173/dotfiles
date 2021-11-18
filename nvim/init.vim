@@ -1,81 +1,57 @@
 "Plugins
 call plug#begin("~/.nvim/plugged")
 
-    "Themes that I like 
-    Plug 'sainnhe/sonokai'
-    Plug 'Mofiqul/vscode.nvim'
-    Plug 'tanvirtin/monokai.nvim'
-    Plug 'projekt0n/github-nvim-theme'
-    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-    Plug 'Mangeshrex/uwu.vim'
-    Plug 'navarasu/onedark.nvim'
-    Plug 'marko-cerovac/material.nvim'
+    Plug 'bluz71/vim-moonfly-colors'
+    Plug 'jaredgorski/SpaceCamp'
+    Plug 'doums/darcula'
+    Plug 'briones-gabriel/darcula-solid.nvim'
+    Plug 'rktjmp/lush.nvim'
 
-    "Miscellaneous
+
     Plug 'glepnir/dashboard-nvim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'frazrepo/vim-rainbow'
     Plug 'akinsho/nvim-toggleterm.lua'
-    Plug 'junegunn/vim-plug'
     Plug 'junegunn/goyo.vim'
     Plug 'folke/todo-comments.nvim'
     
-    "CSS properties and color selector
     Plug 'KabbAmine/vCoolor.vim'
     Plug 'lilydjwg/colorizer'
-    " Plug 'cocopon/colorswatch.vim'
 
-    " File explorer
-    Plug 'preservim/nerdtree'
+    Plug 'kyazdani42/nvim-tree.lua'
 
-    " Comments
     Plug 'tpope/vim-commentary'
     
-    " Fuzzy Finding
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
 
-    " Intellisense and code completion with syntax highlighting
-    Plug 'sheerun/vim-polyglot'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'kabouzeid/nvim-lspinstall'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
     Plug 'glepnir/lspsaga.nvim'
 
-    " Go-development
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-    " Snippets Support
     Plug 'hrsh7th/vim-vsnip'
-    Plug 'L3MON4D3/LuaSnip'
-    Plug 'honza/vim-snippets'
-    Plug 'epilande/vim-react-snippets'
 
-    " emmet
     Plug 'mattn/emmet-vim'
     
-    " Formatting
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'sbdchd/neoformat'
 
-    " Statusline at bottom
-    Plug 'romgrk/barbar.nvim'
-    " Plug 'ap/vim-buftabline'
-    Plug 'kyazdani42/nvim-web-devicons' 
-
-    " Markdown support
-    " Plug 'ellisonleao/glow.nvim'
+    Plug 'ap/vim-buftabline'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
 
-    " Git Stuff
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+
+    " Plug 'romgrk/barbar.nvim'
+    " Plug 'kyazdani42/nvim-web-devicons' 
 
 call plug#end()
 
@@ -100,9 +76,6 @@ vmap > >gv
 
 map <F9> : make %:r <CR>
 
-let bufferline = get(g:, 'bufferline', {})
-
-let bufferline.icons = v:true
 nnoremap <silent>    <S-Tab> :bp<CR>
 nnoremap <silent>    <Tab> :bn<CR>
 nnoremap <silent>    <C-q> :bdelete <CR>
@@ -139,7 +112,7 @@ nnoremap <silent> <C-Left>  :vertical resize -2<CR>
 nnoremap <silent> <C-Right> :vertical resize +2<CR>
 
 " Trees and File Explorers
-nnoremap <C-n> :NERDTreeToggle<cr>
+nnoremap <C-n> :NvimTreeToggle<cr>
 nnoremap <leader>n :Lex! <cr>
 
 autocmd VimEnter *
@@ -181,4 +154,17 @@ lua require("lspconf")
 
 lua << EOF
   require("todo-comments").setup()
+  require("nvim-tree").setup{
+    view = {
+    width = 30,
+    height = 30,
+    hide_root_folder = false,
+    side = 'right',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = {}
+    }
+   }
+  }
 EOF

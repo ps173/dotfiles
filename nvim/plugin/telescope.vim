@@ -1,5 +1,5 @@
 nnoremap <Leader>p :lua require'telescope-projfiles'.project_files()<cr>
-nnoremap <Leader>pf :Telescope file_browser<cr>
+nnoremap <Leader>fp :Telescope file_browser<cr>
 nnoremap <Leader>ff :lua require'telescope.builtin'.find_files()<cr>
 nnoremap <Leader>fc :Telescope git_commits<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
