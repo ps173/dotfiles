@@ -6,11 +6,16 @@ This has my nvim, tmux and i3 configurations.
 
 # For a new setup
 
-- install nvim (0.5+)
-- install i3
-- install bat
-- install tmux
-- install starship
-- install [fira-code patched by nerd fonts](https://www.nerdfonts.com/font-downloads)
+Install following stuff:
+
+- nvim (0.5+)
+- i3
+- zsh
+- lazygit
+- bat
+- tmux
+- starship
+- vscode
+- [fira-code patched by nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 yup that's it
