@@ -10,6 +10,9 @@ require'lspconfig'.cssls.setup{}
 --golang
 require'lspconfig'.gopls.setup{}
 
+--rust
+require'lspconfig'.rls.setup{}
+
 -- lua
 local fn = vim.fn
 
