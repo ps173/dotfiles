@@ -1,0 +1,34 @@
+[column]
+ ui = auto
+
+[branch]
+ sort = -commiterdate
+
+[init]
+ defaultBranch = main
+
+[diff]
+ algorithm = histogram
+ colorMoved = plain
+ mnemonicPrefix = true
+ renames = true
+
+[push]
+ autoSetupRemote = true
+
+[fetch]
+ prune = true
+ all = true
+
+[help]
+ autocorrect = prompt
+
+[commit]
+ verbose = true
+
+[rerere]
+ enabled = true
+ autoUpdate = true
+
+[pull]
+ rebase = false
