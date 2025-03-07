@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "features": {
+    "edit_prediction_provider": "zed",
+    "copilot": true
+  },
   "icon_theme": "Catppuccin Frappé",
   "vim_mode": true,
   "assistant": {
@@ -14,15 +18,19 @@
       "provider": "zed.dev",
       "model": "claude-3-7-sonnet-latest"
     },
+    "enable_experimental_live_diffs": true,
     "version": "2"
   },
   "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "buffer_font_size": 16,
   "buffer_font_family": "Mononoki Nerd Font",
+  "buffer_line_height": {
+    "custom": 1.45
+  },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Frappé"
+    "dark": "Gruvbox Material"
   },
   "indent_guides": {
     "enabled": false
@@ -63,7 +71,7 @@
       "settings": {
         "typescript": {
           "preferences": {
-            "importModuleSpecifier": "non-relative"
+            "importModuleSpecifier": "relative"
           }
         }
       }
