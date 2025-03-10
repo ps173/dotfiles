@@ -22,15 +22,15 @@
     "version": "2"
   },
   "ui_font_size": 16,
-  "buffer_font_size": 16,
-  "buffer_font_family": "Mononoki Nerd Font",
+  "buffer_font_size": 18,
+  "buffer_font_family": "Iosevka Nerd Font Mono",
   "buffer_line_height": {
-    "custom": 1.45
+    "custom": 1.75
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Gruvbox Material"
+    "dark": "One Dark"
   },
   "indent_guides": {
     "enabled": false
@@ -61,6 +61,16 @@
     },
     "Markdown": {
       "show_edit_predictions": false
+    },
+    "Liquid": {
+      "prettier": {
+        "allowed": true,
+        "plugins": [
+          "@shopify/prettier-plugin-liquid",
+          "prettier-plugin-tailwindcss"
+        ]
+      },
+      "language_servers": ["tailwindcss-language-server", "..."]
     }
   },
   "edit_predictions": {
@@ -73,6 +83,13 @@
           "preferences": {
             "importModuleSpecifier": "relative"
           }
+        }
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "includeLanguages": {
+          "liquid": "html"
         }
       }
     }
